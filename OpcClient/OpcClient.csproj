@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5D74D287-8B9A-4D2B-B937-E3375CF7C044}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpcClient</RootNamespace>
+    <AssemblyName>OpcClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IniFile">
+      <HintPath>..\Dll\IniFile.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\UaAddress.cs" />
+    <Compile Include="Config\DaAddress.cs" />
+    <Compile Include="Config\TagConfiguration.cs" />
+    <Compile Include="ICloneable.cs" />
+    <Compile Include="IEnumerableExtend.cs" />
+    <Compile Include="Opc\OpcNode.cs" />
+    <Compile Include="Opc\IGroup.cs" />
+    <Compile Include="Opc\IOpcClient.cs" />
+    <Compile Include="Opc\ITagsChangedListener.cs" />
+    <Compile Include="Opc\OpcStatusEventArgs.cs" />
+    <Compile Include="Config\OpcAddressConfiguration.cs" />
+    <Compile Include="Opc\Tag.cs" />
+    <Compile Include="Opc\TagsChangedListener.cs" />
+    <Compile Include="Opc\TypeRemarkAttribute .cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StringExtend.cs" />
+    <Compile Include="TagsQueue.cs" />
+    <Compile Include="Util\ConfigurationManagerExtend.cs" />
+    <Compile Include="Util\TagConfig.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\EasySocket.vs13\Lib\HPSocket4C-SSL.dll">
+      <Link>Lib\HPSocket4C-SSL.dll</Link>
+    </Content>
+    <Content Include="..\..\EasySocket.vs13\Lib\HPSocket4C-SSL_D.dll">
+      <Link>Lib\HPSocket4C-SSL_D.dll</Link>
+    </Content>
+    <Content Include="..\..\EasySocket.vs13\Lib\HPSocket4C-SSL_U.dll">
+      <Link>Lib\HPSocket4C-SSL_U.dll</Link>
+    </Content>
+    <Content Include="..\..\EasySocket.vs13\Lib\HPSocket4C-SSL_UD.dll">
+      <Link>Lib\HPSocket4C-SSL_UD.dll</Link>
+    </Content>
+    <Content Include="..\..\EasySocket.vs13\Lib\HPSocket4C_D.dll">
+      <Link>Lib\HPSocket4C_D.dll</Link>
+    </Content>
+    <Content Include="..\..\EasySocket.vs13\Lib\HPSocket4C_U.dll">
+      <Link>Lib\HPSocket4C_U.dll</Link>
+    </Content>
+    <Content Include="..\..\EasySocket.vs13\Lib\HPSocket4C_UD.dll">
+      <Link>Lib\HPSocket4C_UD.dll</Link>
+    </Content>
+    <Content Include="Img\Activity_16xLG.png" />
+    <Content Include="Img\brackets_Square_16xMD.png" />
+    <Content Include="Img\ClassIcon.ico" />
+    <Content Include="Img\ClassIcon.png" />
+    <Content Include="Img\Class_489.png" />
+    <Content Include="Img\Cloud_16xLG.png" />
+    <Content Include="Img\Copy_6524.png" />
+    <Content Include="Img\Delegate_8339.png" />
+    <Content Include="Img\docview_xaml_on_16x16.png" />
+    <Content Include="Img\Enum_582.png" />
+    <Content Include="Img\Event_594.png" />
+    <Content Include="Img\Event_594_exp.png" />
+    <Content Include="Img\glasses_16xLG.png" />
+    <Content Include="Img\grid_Data_16xLG.png" />
+    <Content Include="Img\lightningBolt_16xLG.png" />
+    <Content Include="Img\ListView_687.png" />
+    <Content Include="Img\loading.gif" />
+    <Content Include="Img\Method_636.png" />
+    <Content Include="Img\Module_648.png" />
+    <Content Include="Img\RegistryEditor_5838.ico" />
+    <Content Include="Img\SingleMessage_5727.ico" />
+    <Content Include="Img\Structure_507.png" />
+    <Content Include="Img\Table_748.png" />
+    <Content Include="Img\Tag_7213.png" />
+    <Content Include="Img\usbcontroller.png" />
+    <Content Include="Img\UserInterfaceEditor_5845.ico" />
+    <Content Include="Img\VirtualMachine.png" />
+    <Content Include="Img\WindowsForm_817.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
