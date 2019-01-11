@@ -31,14 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EasySocket.vs13">
-      <HintPath>..\..\..\dotnet\EasySocket.vs13\bin\x86\Debug\EasySocket\EasySocket.vs13.dll</HintPath>
-    </Reference>
     <Reference Include="Log4Ex">
       <HintPath>..\..\..\dotnet\EasySocket.vs13\bin\x86\Debug\EasySocket\Log4Ex.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\..\dotnet\EasySocket.vs13\bin\x86\Debug\EasySocket\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Models">
       <HintPath>..\..\..\dotnet\EasySocket.vs13\bin\x86\Debug\Client\Models.dll</HintPath>
@@ -62,6 +62,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\EasySocket.vs13\EasySocket.vs13\EasySocket.vs13.csproj">
+      <Project>{89e6a40c-bddd-4835-b9e8-7585274e7e51}</Project>
+      <Name>EasySocket.vs13</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpcClient\OpcClient.csproj">
       <Project>{5d74d287-8b9a-4d2b-b937-e3375cf7c044}</Project>
       <Name>OpcClient</Name>
@@ -70,6 +74,9 @@
       <Project>{2b31015c-aa6d-4b47-b827-f31748fa7128}</Project>
       <Name>OpLink.Interface</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Fakes Include="Fakes\EasySocket.vs13.fakes" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
