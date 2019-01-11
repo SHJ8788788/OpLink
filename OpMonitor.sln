@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpMonitor", "OpMonitor\OpMo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpcClient", "OpcClient\OpcClient.csproj", "{5D74D287-8B9A-4D2B-B937-E3375CF7C044}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpcSBForGX", "OpcSBForGX\OpcSBForGX.csproj", "{3CD943BA-2005-4018-921B-74459CEE8905}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UaOpcClient", "UaOpc\UaOpcClient.csproj", "{5FF6D3E7-436C-4945-9D3C-0EB4AF71282F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaOpcClient", "DaOpcClient\DaOpcClient.csproj", "{079183B5-968A-409D-B05F-11A8C7AFF5EE}"
@@ -23,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySocketService", "EasySo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRAREService", "PRAREService\PRAREService.csproj", "{92821ECF-A05B-4115-BE70-18072E5F03D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySocket.vs13", "..\..\EasySocket.vs13\EasySocket.vs13\EasySocket.vs13.csproj", "{89E6A40C-BDDD-4835-B9E8-7585274E7E51}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySocket.vs13", "..\EasySocket.vs13\EasySocket.vs13\EasySocket.vs13.csproj", "{89E6A40C-BDDD-4835-B9E8-7585274E7E51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,16 +53,6 @@ Global
 		{5D74D287-8B9A-4D2B-B937-E3375CF7C044}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5D74D287-8B9A-4D2B-B937-E3375CF7C044}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5D74D287-8B9A-4D2B-B937-E3375CF7C044}.Release|x86.ActiveCfg = Release|Any CPU
-		{3CD943BA-2005-4018-921B-74459CEE8905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CD943BA-2005-4018-921B-74459CEE8905}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CD943BA-2005-4018-921B-74459CEE8905}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{3CD943BA-2005-4018-921B-74459CEE8905}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{3CD943BA-2005-4018-921B-74459CEE8905}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3CD943BA-2005-4018-921B-74459CEE8905}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CD943BA-2005-4018-921B-74459CEE8905}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CD943BA-2005-4018-921B-74459CEE8905}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{3CD943BA-2005-4018-921B-74459CEE8905}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{3CD943BA-2005-4018-921B-74459CEE8905}.Release|x86.ActiveCfg = Release|Any CPU
 		{5FF6D3E7-436C-4945-9D3C-0EB4AF71282F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5FF6D3E7-436C-4945-9D3C-0EB4AF71282F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FF6D3E7-436C-4945-9D3C-0EB4AF71282F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

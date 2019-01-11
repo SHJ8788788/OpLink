@@ -62,7 +62,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\EasySocket.vs13\EasySocket.vs13\EasySocket.vs13.csproj">
+    <ProjectReference Include="..\..\EasySocket.vs13\EasySocket.vs13\EasySocket.vs13.csproj">
       <Project>{89e6a40c-bddd-4835-b9e8-7585274e7e51}</Project>
       <Name>EasySocket.vs13</Name>
     </ProjectReference>
