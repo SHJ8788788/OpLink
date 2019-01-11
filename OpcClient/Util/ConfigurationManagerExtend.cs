@@ -37,7 +37,7 @@ namespace OpcClient
             //{
             //    sections.Add(sectionGroupName, section);
             //}
-            foreach (String sectionName in sectionGroup.Sections.Keys)
+            foreach (String sectionName in  sectionGroup.Sections.Keys)
             {
                 var sectionFullName = sectionGroupName.IsNullOrEmpty() ? sectionName : sectionGroupName + "/" + sectionName;
                 T section = (T)config.GetSection(sectionFullName);
