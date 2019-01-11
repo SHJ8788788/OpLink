@@ -58,7 +58,7 @@ namespace OpLink
             }
             catch (Exception ex)
             {
-                //记日志
+                //记录日志
                 AddMsgToList("通讯服务器校验结果：" + ex.ToString());
                 return;
             }
