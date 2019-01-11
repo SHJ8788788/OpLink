@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Groups>
+  <Group Name="GroupTrigger">
+    <Block Name="milltm1" />
+    <Block Name="milltm2" />
+    <Block Name="milltm4" />
+    <Block Name="uatrig">
+      <Tag TagName="H13YAOGANG" OpcTagName="ns=2;s=模拟器示例.函数ForG1.H13YAOGANG" />
+      <Tag TagName="H13YAOGANG4" OpcTagName="ns=2;s=模拟器示例.函数ForG1.H13YAOGANG4" />
+      <Tag TagName="H1YAOGANG" OpcTagName="ns=2;s=模拟器示例.函数ForG1.H1YAOGANG" />
+      <Tag TagName="H7YAOGANG" OpcTagName="ns=2;s=模拟器示例.函数ForG1.H7YAOGANG" />
+      <Tag TagName="PL_RULU" OpcTagName="ns=2;s=模拟器示例.函数ForG1.PL_RULU" />
+    </Block>
+    <Block Name="datrig">
+      <Tag TagName="RandomYaxis" OpcTagName="Channel_0_User_Defined.Random.RandomYaxis" />
+      <Tag TagName="RandomXaxis" OpcTagName="Channel_0_User_Defined.Random.RandomXaxis" />
+    </Block>
+  </Group>
+  <Group Name="GroupData">
+    <Block Name="uadata">
+      <Tag TagName="Ramp101" OpcTagName="ns=2;s=模拟器示例.函数.Ramp101" />
+      <Tag TagName="Ramp102" OpcTagName="ns=2;s=模拟器示例.函数.Ramp102" />
+      <Tag TagName="Ramp103" OpcTagName="ns=2;s=模拟器示例.函数.Ramp103" />
+      <Tag TagName="Ramp104" OpcTagName="ns=2;s=模拟器示例.函数.Ramp104" />
+      <Tag TagName="Ramp105" OpcTagName="ns=2;s=模拟器示例.函数.Ramp105" />
+      <Tag TagName="Ramp106" OpcTagName="ns=2;s=模拟器示例.函数.Ramp106" />
+      <Tag TagName="Ramp107" OpcTagName="ns=2;s=模拟器示例.函数.Ramp107" />
+      <Tag TagName="Ramp108" OpcTagName="ns=2;s=模拟器示例.函数.Ramp108" />
+      <Tag TagName="Ramp109" OpcTagName="ns=2;s=模拟器示例.函数.Ramp109" />
+      <Tag TagName="Ramp11" OpcTagName="ns=2;s=模拟器示例.函数.Ramp11" />
+      <Tag TagName="Ramp110" OpcTagName="ns=2;s=模拟器示例.函数.Ramp110" />
+      <Tag TagName="Ramp111" OpcTagName="ns=2;s=模拟器示例.函数.Ramp111" />
+      <Tag TagName="Ramp112" OpcTagName="ns=2;s=模拟器示例.函数.Ramp112" />
+      <Tag TagName="Ramp113" OpcTagName="ns=2;s=模拟器示例.函数.Ramp113" />
+      <Tag TagName="Ramp114" OpcTagName="ns=2;s=模拟器示例.函数.Ramp114" />
+      <Tag TagName="Ramp115" OpcTagName="ns=2;s=模拟器示例.函数.Ramp115" />
+      <Tag TagName="Ramp116" OpcTagName="ns=2;s=模拟器示例.函数.Ramp116" />
+      <Tag TagName="Ramp117" OpcTagName="ns=2;s=模拟器示例.函数.Ramp117" />
+      <Tag TagName="Ramp118" OpcTagName="ns=2;s=模拟器示例.函数.Ramp118" />
+      <Tag TagName="Ramp119" OpcTagName="ns=2;s=模拟器示例.函数.Ramp119" />
+      <Tag TagName="Ramp12" OpcTagName="ns=2;s=模拟器示例.函数.Ramp12" />
+      <Tag TagName="Ramp120" OpcTagName="ns=2;s=模拟器示例.函数.Ramp120" />
+      <Tag TagName="Ramp121" OpcTagName="ns=2;s=模拟器示例.函数.Ramp121" />
+      <Tag TagName="Ramp122" OpcTagName="ns=2;s=模拟器示例.函数.Ramp122" />
+      <Tag TagName="Ramp123" OpcTagName="ns=2;s=模拟器示例.函数.Ramp123" />
+      <Tag TagName="Ramp124" OpcTagName="ns=2;s=模拟器示例.函数.Ramp124" />
+      <Tag TagName="Ramp125" OpcTagName="ns=2;s=模拟器示例.函数.Ramp125" />
+      <Tag TagName="Ramp126" OpcTagName="ns=2;s=模拟器示例.函数.Ramp126" />
+      <Tag TagName="Ramp127" OpcTagName="ns=2;s=模拟器示例.函数.Ramp127" />
+      <Tag TagName="Ramp128" OpcTagName="ns=2;s=模拟器示例.函数.Ramp128" />
+      <Tag TagName="Ramp129" OpcTagName="ns=2;s=模拟器示例.函数.Ramp129" />
+      <Tag TagName="Ramp13" OpcTagName="ns=2;s=模拟器示例.函数.Ramp13" />
+      <Tag TagName="Ramp130" OpcTagName="ns=2;s=模拟器示例.函数.Ramp130" />
+      <Tag TagName="Ramp131" OpcTagName="ns=2;s=模拟器示例.函数.Ramp131" />
+      <Tag TagName="Ramp132" OpcTagName="ns=2;s=模拟器示例.函数.Ramp132" />
+      <Tag TagName="Ramp133" OpcTagName="ns=2;s=模拟器示例.函数.Ramp133" />
+      <Tag TagName="Ramp134" OpcTagName="ns=2;s=模拟器示例.函数.Ramp134" />
+      <Tag TagName="Ramp135" OpcTagName="ns=2;s=模拟器示例.函数.Ramp135" />
+      <Tag TagName="Ramp136" OpcTagName="ns=2;s=模拟器示例.函数.Ramp136" />
+      <Tag TagName="Ramp137" OpcTagName="ns=2;s=模拟器示例.函数.Ramp137" />
+      <Tag TagName="Ramp138" OpcTagName="ns=2;s=模拟器示例.函数.Ramp138" />
+      <Tag TagName="Ramp139" OpcTagName="ns=2;s=模拟器示例.函数.Ramp139" />
+      <Tag TagName="Ramp14" OpcTagName="ns=2;s=模拟器示例.函数.Ramp14" />
+      <Tag TagName="Ramp140" OpcTagName="ns=2;s=模拟器示例.函数.Ramp140" />
+      <Tag TagName="Ramp141" OpcTagName="ns=2;s=模拟器示例.函数.Ramp141" />
+      <Tag TagName="Ramp142" OpcTagName="ns=2;s=模拟器示例.函数.Ramp142" />
+      <Tag TagName="Ramp143" OpcTagName="ns=2;s=模拟器示例.函数.Ramp143" />
+      <Tag TagName="Ramp144" OpcTagName="ns=2;s=模拟器示例.函数.Ramp144" />
+      <Tag TagName="Ramp145" OpcTagName="ns=2;s=模拟器示例.函数.Ramp145" />
+      <Tag TagName="Ramp146" OpcTagName="ns=2;s=模拟器示例.函数.Ramp146" />
+      <Tag TagName="Ramp147" OpcTagName="ns=2;s=模拟器示例.函数.Ramp147" />
+      <Tag TagName="Ramp148" OpcTagName="ns=2;s=模拟器示例.函数.Ramp148" />
+      <Tag TagName="Ramp149" OpcTagName="ns=2;s=模拟器示例.函数.Ramp149" />
+      <Tag TagName="Ramp15" OpcTagName="ns=2;s=模拟器示例.函数.Ramp15" />
+      <Tag TagName="Ramp150" OpcTagName="ns=2;s=模拟器示例.函数.Ramp150" />
+      <Tag TagName="Ramp151" OpcTagName="ns=2;s=模拟器示例.函数.Ramp151" />
+      <Tag TagName="Ramp152" OpcTagName="ns=2;s=模拟器示例.函数.Ramp152" />
+      <Tag TagName="Ramp16" OpcTagName="ns=2;s=模拟器示例.函数.Ramp16" />
+      <Tag TagName="Ramp17" OpcTagName="ns=2;s=模拟器示例.函数.Ramp17" />
+      <Tag TagName="Ramp18" OpcTagName="ns=2;s=模拟器示例.函数.Ramp18" />
+      <Tag TagName="Ramp19" OpcTagName="ns=2;s=模拟器示例.函数.Ramp19" />
+      <Tag TagName="Ramp2" OpcTagName="ns=2;s=模拟器示例.函数.Ramp2" />
+      <Tag TagName="Ramp20" OpcTagName="ns=2;s=模拟器示例.函数.Ramp20" />
+      <Tag TagName="Ramp21" OpcTagName="ns=2;s=模拟器示例.函数.Ramp21" />
+      <Tag TagName="Ramp22" OpcTagName="ns=2;s=模拟器示例.函数.Ramp22" />
+      <Tag TagName="Ramp23" OpcTagName="ns=2;s=模拟器示例.函数.Ramp23" />
+      <Tag TagName="Ramp24" OpcTagName="ns=2;s=模拟器示例.函数.Ramp24" />
+      <Tag TagName="Ramp25" OpcTagName="ns=2;s=模拟器示例.函数.Ramp25" />
+      <Tag TagName="Ramp26" OpcTagName="ns=2;s=模拟器示例.函数.Ramp26" />
+      <Tag TagName="Ramp27" OpcTagName="ns=2;s=模拟器示例.函数.Ramp27" />
+      <Tag TagName="Ramp28" OpcTagName="ns=2;s=模拟器示例.函数.Ramp28" />
+      <Tag TagName="Ramp29" OpcTagName="ns=2;s=模拟器示例.函数.Ramp29" />
+      <Tag TagName="Ramp3" OpcTagName="ns=2;s=模拟器示例.函数.Ramp3" />
+      <Tag TagName="Ramp30" OpcTagName="ns=2;s=模拟器示例.函数.Ramp30" />
+      <Tag TagName="Ramp31" OpcTagName="ns=2;s=模拟器示例.函数.Ramp31" />
+      <Tag TagName="Ramp32" OpcTagName="ns=2;s=模拟器示例.函数.Ramp32" />
+      <Tag TagName="Ramp33" OpcTagName="ns=2;s=模拟器示例.函数.Ramp33" />
+      <Tag TagName="Ramp34" OpcTagName="ns=2;s=模拟器示例.函数.Ramp34" />
+      <Tag TagName="Ramp35" OpcTagName="ns=2;s=模拟器示例.函数.Ramp35" />
+      <Tag TagName="Ramp36" OpcTagName="ns=2;s=模拟器示例.函数.Ramp36" />
+      <Tag TagName="Ramp37" OpcTagName="ns=2;s=模拟器示例.函数.Ramp37" />
+      <Tag TagName="Ramp38" OpcTagName="ns=2;s=模拟器示例.函数.Ramp38" />
+      <Tag TagName="Ramp39" OpcTagName="ns=2;s=模拟器示例.函数.Ramp39" />
+      <Tag TagName="Ramp4" OpcTagName="ns=2;s=模拟器示例.函数.Ramp4" />
+      <Tag TagName="Ramp40" OpcTagName="ns=2;s=模拟器示例.函数.Ramp40" />
+      <Tag TagName="Ramp41" OpcTagName="ns=2;s=模拟器示例.函数.Ramp41" />
+      <Tag TagName="Ramp42" OpcTagName="ns=2;s=模拟器示例.函数.Ramp42" />
+      <Tag TagName="Ramp43" OpcTagName="ns=2;s=模拟器示例.函数.Ramp43" />
+      <Tag TagName="Ramp44" OpcTagName="ns=2;s=模拟器示例.函数.Ramp44" />
+      <Tag TagName="Ramp45" OpcTagName="ns=2;s=模拟器示例.函数.Ramp45" />
+      <Tag TagName="Ramp46" OpcTagName="ns=2;s=模拟器示例.函数.Ramp46" />
+      <Tag TagName="Ramp47" OpcTagName="ns=2;s=模拟器示例.函数.Ramp47" />
+      <Tag TagName="Ramp48" OpcTagName="ns=2;s=模拟器示例.函数.Ramp48" />
+      <Tag TagName="Ramp49" OpcTagName="ns=2;s=模拟器示例.函数.Ramp49" />
+      <Tag TagName="Ramp5" OpcTagName="ns=2;s=模拟器示例.函数.Ramp5" />
+      <Tag TagName="Ramp50" OpcTagName="ns=2;s=模拟器示例.函数.Ramp50" />
+      <Tag TagName="Ramp51" OpcTagName="ns=2;s=模拟器示例.函数.Ramp51" />
+      <Tag TagName="Ramp52" OpcTagName="ns=2;s=模拟器示例.函数.Ramp52" />
+      <Tag TagName="Ramp53" OpcTagName="ns=2;s=模拟器示例.函数.Ramp53" />
+      <Tag TagName="Ramp54" OpcTagName="ns=2;s=模拟器示例.函数.Ramp54" />
+      <Tag TagName="Ramp55" OpcTagName="ns=2;s=模拟器示例.函数.Ramp55" />
+      <Tag TagName="Ramp56" OpcTagName="ns=2;s=模拟器示例.函数.Ramp56" />
+      <Tag TagName="Ramp57" OpcTagName="ns=2;s=模拟器示例.函数.Ramp57" />
+      <Tag TagName="Ramp58" OpcTagName="ns=2;s=模拟器示例.函数.Ramp58" />
+      <Tag TagName="Ramp59" OpcTagName="ns=2;s=模拟器示例.函数.Ramp59" />
+      <Tag TagName="Ramp6" OpcTagName="ns=2;s=模拟器示例.函数.Ramp6" />
+      <Tag TagName="Ramp60" OpcTagName="ns=2;s=模拟器示例.函数.Ramp60" />
+      <Tag TagName="Ramp61" OpcTagName="ns=2;s=模拟器示例.函数.Ramp61" />
+      <Tag TagName="Ramp62" OpcTagName="ns=2;s=模拟器示例.函数.Ramp62" />
+      <Tag TagName="Ramp63" OpcTagName="ns=2;s=模拟器示例.函数.Ramp63" />
+      <Tag TagName="Ramp64" OpcTagName="ns=2;s=模拟器示例.函数.Ramp64" />
+      <Tag TagName="Ramp65" OpcTagName="ns=2;s=模拟器示例.函数.Ramp65" />
+      <Tag TagName="Ramp66" OpcTagName="ns=2;s=模拟器示例.函数.Ramp66" />
+      <Tag TagName="Ramp67" OpcTagName="ns=2;s=模拟器示例.函数.Ramp67" />
+      <Tag TagName="Ramp68" OpcTagName="ns=2;s=模拟器示例.函数.Ramp68" />
+      <Tag TagName="Ramp69" OpcTagName="ns=2;s=模拟器示例.函数.Ramp69" />
+      <Tag TagName="Ramp7" OpcTagName="ns=2;s=模拟器示例.函数.Ramp7" />
+      <Tag TagName="Ramp70" OpcTagName="ns=2;s=模拟器示例.函数.Ramp70" />
+      <Tag TagName="Ramp71" OpcTagName="ns=2;s=模拟器示例.函数.Ramp71" />
+      <Tag TagName="Ramp72" OpcTagName="ns=2;s=模拟器示例.函数.Ramp72" />
+      <Tag TagName="Ramp73" OpcTagName="ns=2;s=模拟器示例.函数.Ramp73" />
+      <Tag TagName="Ramp74" OpcTagName="ns=2;s=模拟器示例.函数.Ramp74" />
+      <Tag TagName="Ramp75" OpcTagName="ns=2;s=模拟器示例.函数.Ramp75" />
+      <Tag TagName="Ramp76" OpcTagName="ns=2;s=模拟器示例.函数.Ramp76" />
+      <Tag TagName="Ramp77" OpcTagName="ns=2;s=模拟器示例.函数.Ramp77" />
+      <Tag TagName="Ramp78" OpcTagName="ns=2;s=模拟器示例.函数.Ramp78" />
+      <Tag TagName="Ramp79" OpcTagName="ns=2;s=模拟器示例.函数.Ramp79" />
+      <Tag TagName="Ramp8" OpcTagName="ns=2;s=模拟器示例.函数.Ramp8" />
+      <Tag TagName="Ramp80" OpcTagName="ns=2;s=模拟器示例.函数.Ramp80" />
+      <Tag TagName="Ramp81" OpcTagName="ns=2;s=模拟器示例.函数.Ramp81" />
+      <Tag TagName="Ramp82" OpcTagName="ns=2;s=模拟器示例.函数.Ramp82" />
+      <Tag TagName="Ramp83" OpcTagName="ns=2;s=模拟器示例.函数.Ramp83" />
+      <Tag TagName="Ramp84" OpcTagName="ns=2;s=模拟器示例.函数.Ramp84" />
+      <Tag TagName="Ramp85" OpcTagName="ns=2;s=模拟器示例.函数.Ramp85" />
+      <Tag TagName="Ramp86" OpcTagName="ns=2;s=模拟器示例.函数.Ramp86" />
+      <Tag TagName="Ramp87" OpcTagName="ns=2;s=模拟器示例.函数.Ramp87" />
+      <Tag TagName="Ramp88" OpcTagName="ns=2;s=模拟器示例.函数.Ramp88" />
+      <Tag TagName="Ramp89" OpcTagName="ns=2;s=模拟器示例.函数.Ramp89" />
+      <Tag TagName="Ramp9" OpcTagName="ns=2;s=模拟器示例.函数.Ramp9" />
+      <Tag TagName="Ramp90" OpcTagName="ns=2;s=模拟器示例.函数.Ramp90" />
+      <Tag TagName="Ramp91" OpcTagName="ns=2;s=模拟器示例.函数.Ramp91" />
+      <Tag TagName="Ramp92" OpcTagName="ns=2;s=模拟器示例.函数.Ramp92" />
+      <Tag TagName="Ramp93" OpcTagName="ns=2;s=模拟器示例.函数.Ramp93" />
+      <Tag TagName="Ramp94" OpcTagName="ns=2;s=模拟器示例.函数.Ramp94" />
+      <Tag TagName="Ramp95" OpcTagName="ns=2;s=模拟器示例.函数.Ramp95" />
+      <Tag TagName="Ramp96" OpcTagName="ns=2;s=模拟器示例.函数.Ramp96" />
+      <Tag TagName="Ramp97" OpcTagName="ns=2;s=模拟器示例.函数.Ramp97" />
+      <Tag TagName="Ramp98" OpcTagName="ns=2;s=模拟器示例.函数.Ramp98" />
+      <Tag TagName="Ramp99" OpcTagName="ns=2;s=模拟器示例.函数.Ramp99" />
+      <Tag TagName="Random1" OpcTagName="ns=2;s=模拟器示例.函数.Random1" />
+      <Tag TagName="Random2" OpcTagName="ns=2;s=模拟器示例.函数.Random2" />
+      <Tag TagName="Random3" OpcTagName="ns=2;s=模拟器示例.函数.Random3" />
+      <Tag TagName="Random4" OpcTagName="ns=2;s=模拟器示例.函数.Random4" />
+    </Block>
+    <Block Name="dadata">
+      <Tag TagName="Sine5" OpcTagName="Channel_0_User_Defined.Sine.Sine5" />
+      <Tag TagName="Sine4" OpcTagName="Channel_0_User_Defined.Sine.Sine4" />
+      <Tag TagName="Sine3" OpcTagName="Channel_0_User_Defined.Sine.Sine3" />
+      <Tag TagName="Sine2" OpcTagName="Channel_0_User_Defined.Sine.Sine2" />
+      <Tag TagName="Sine1" OpcTagName="Channel_0_User_Defined.Sine.Sine1" />
+    </Block>
+  </Group>
+</Groups>
