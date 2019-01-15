@@ -75,8 +75,5 @@
       <Name>OpLink.Interface</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Fakes Include="Fakes\EasySocket.vs13.fakes" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

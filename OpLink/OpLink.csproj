@@ -87,7 +87,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Config\op.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
