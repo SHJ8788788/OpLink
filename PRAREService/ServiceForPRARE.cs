@@ -92,9 +92,23 @@ namespace PRAREService
             if (para_value == 1)
             {
                 var db = SugarDao.Instance;
-                tran_id = db.GetSingle<double>("select Itf_Tran_ID_S.NEXTVAL  from  dual");
-                db.Insert(new ITF_PARA_VALUE() { TRAN_ID = tran_id, EQUIP_TYPE = equip_type, SOURCE_APP_CODE = source_app_code, SOURCE_PARA_CODE = source_para_code, PARA_VALUE = para_value, TRAN_DATE = DateTime.Now, SEND_DATE = DateTime.Now, STATUS = 0 });
-            }
+                db.Aop.OnLogExecuted = (sql, pars) => //SQL执行完事件
+                {
+                    Console.WriteLine(sql);
+                    Console.WriteLine();
+                };
+                db.Aop.OnLogExecuting = (sql, pars) => //SQL执行前事件
+                {
+
+                };
+                db.Aop.OnError = (exp) =>//执行SQL 错误事件
+                {
+                    //exp.sql exp.parameters 可以拿到参数和错误Sql             
+                };
+
+                tran_id = db.Ado.SqlQuerySingle<double>("select Itf_Tran_ID_S.NEXTVAL  from  dual");
+                var sucess = db.Insertable(new ITF_PARA_VALUE() { TRAN_ID = tran_id, EQUIP_TYPE = equip_type, SOURCE_APP_CODE = source_app_code, SOURCE_PARA_CODE = source_para_code, PARA_VALUE = para_value, TRAN_DATE = DateTime.Now, SEND_DATE = DateTime.Now, STATUS = 0 }).ExecuteCommand();
+               }
             //MsgHandle?.Invoke(string.Format("DateTime ={0},TagName={1}, Value={2}, DataType={3}", DateTime.Now.ToString(), tag.TagName, tag.Value, tag.DataType));
         }
     }

@@ -228,23 +228,16 @@ namespace UaOpcClient
         /// <param name="monitoredItem"></param>
         /// <param name="eventArgs"></param>
         private void SubCallBack(string groupName, MonitoredItem monitoredItem, MonitoredItemNotificationEventArgs eventArgs)
-        {
-            //if (InvokeRequired)
-            //{
-            //    Invoke(new Action<string, MonitoredItem, MonitoredItemNotificationEventArgs>(SubCallBack), key, monitoredItem, eventArgs);
-            //    return;
-            //}
-
-
+        {          
             MonitoredItemNotification notification = eventArgs.NotificationValue as MonitoredItemNotification;
             if (this.groupDictionary.Count()==0)
             {
                 return;
             }
-            var tag = this.groupDictionary[groupName].GetTags().Where(p => p.OpcTagName == monitoredItem.StartNodeId.ToString()).FirstOrDefault();
-            //标签时间戳
-            if (tag != null)
+            if (this.groupDictionary[groupName].GetTags().Where(p => p.OpcTagName == monitoredItem.StartNodeId.ToString()).Count()!=0)
             {
+                var tag = this.groupDictionary[groupName].GetTags().Where(p => p.OpcTagName == monitoredItem.StartNodeId.ToString()).FirstOrDefault();
+                //标签时间戳
                 tag.TimeStamps = Convert.ToDateTime(DateTime.Now);
                 tag.Qualities = "Good";
                 //标签值,必须写在最后，值变化会触发事件处理，其它值必须在此之前完成赋值

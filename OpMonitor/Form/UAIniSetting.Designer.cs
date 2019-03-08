@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UAIniSetting));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbServerName = new System.Windows.Forms.ComboBox();
@@ -50,13 +51,13 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbOpcProtocol = new System.Windows.Forms.ComboBox();
             this.cmbReconnectEnable = new System.Windows.Forms.ComboBox();
+            this.txtTypeName = new System.Windows.Forms.TextBox();
             this.txtReconnectInterval = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtTypeName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabDA.SuspendLayout();
@@ -288,6 +289,15 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "OPC断线重连";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(15, 54);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(47, 12);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "OPC类名";
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -315,6 +325,14 @@
             this.cmbReconnectEnable.Size = new System.Drawing.Size(179, 20);
             this.cmbReconnectEnable.TabIndex = 1;
             // 
+            // txtTypeName
+            // 
+            this.txtTypeName.Location = new System.Drawing.Point(98, 51);
+            this.txtTypeName.Name = "txtTypeName";
+            this.txtTypeName.ReadOnly = true;
+            this.txtTypeName.Size = new System.Drawing.Size(179, 21);
+            this.txtTypeName.TabIndex = 2;
+            // 
             // txtReconnectInterval
             // 
             this.txtReconnectInterval.Location = new System.Drawing.Point(98, 118);
@@ -332,23 +350,6 @@
             this.panel1.Size = new System.Drawing.Size(394, 74);
             this.panel1.TabIndex = 6;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(15, 54);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(47, 12);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "OPC类名";
-            // 
-            // txtTypeName
-            // 
-            this.txtTypeName.Location = new System.Drawing.Point(98, 51);
-            this.txtTypeName.Name = "txtTypeName";
-            this.txtTypeName.ReadOnly = true;
-            this.txtTypeName.Size = new System.Drawing.Size(179, 21);
-            this.txtTypeName.TabIndex = 2;
-            // 
             // UAIniSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -356,6 +357,7 @@
             this.ClientSize = new System.Drawing.Size(394, 485);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UAIniSetting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UAIniSetting";

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,7 +20,7 @@ namespace OpLink
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            CheckRunning();
         }
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
@@ -34,6 +35,22 @@ namespace OpLink
             Exception ex = e.ExceptionObject as Exception;
             MessageBox.Show(string.Format("捕获到未处理异常：{0}\r\n异常信息：{1}\r\n异常堆栈：{2}\r\nCLR即将退出：{3}", ex.GetType(), ex.Message, ex.StackTrace, e.IsTerminating), "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             System.Environment.Exit(0);
+        }
+
+        static void CheckRunning()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            bool ret;
+            Mutex mutex = new Mutex(true, Application.ProductName, out ret);
+            if (ret)
+            {
+                Application.Run(new Main());
+            }
+            else
+            {
+                MessageBox.Show("该程序已经启动", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

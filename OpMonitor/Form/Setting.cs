@@ -207,7 +207,7 @@ namespace OpMonitor
         }
         private void TagValueChanged(Tag tag)
         {
-            Console.WriteLine("TagName={0}, Value={1}, DataType={2}", tag.TagName, tag.Value, tag.DataType);
+            //Console.WriteLine("TagName={0}, Value={1}, DataType={2}", tag.TagName, tag.Value, tag.DataType);
         }
 
         /// <summary>
@@ -558,6 +558,27 @@ namespace OpMonitor
                 }
             }
         }
+        /// <summary>
+        /// gridview行号显示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridTags_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+
+            DataGridView dgv = sender as DataGridView;
+            Rectangle rectangle = new Rectangle(e.RowBounds.Location.X,
+                                                e.RowBounds.Location.Y,
+                                                dgv.RowHeadersWidth - 4,
+                                                e.RowBounds.Height);
+
+
+            TextRenderer.DrawText(e.Graphics, (e.RowIndex + 1).ToString(),
+                                    dgv.RowHeadersDefaultCellStyle.Font,
+                                    rectangle,
+                                    dgv.RowHeadersDefaultCellStyle.ForeColor,
+                                    TextFormatFlags.VerticalCenter | TextFormatFlags.Right);
+        }
         //是否自动获取数据
         private void chkRefresh_CheckedChanged(object sender, EventArgs e)
         {
@@ -600,7 +621,7 @@ namespace OpMonitor
         {
             iniSetting();
         }
-        #endregion
+        #endregion       
     }
 }
 /// <summary>

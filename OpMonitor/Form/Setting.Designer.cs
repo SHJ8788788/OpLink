@@ -29,13 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Setting));
             this.treeTags = new System.Windows.Forms.TreeView();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.contextMenuBlock = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolTagAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolBlockNameEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolBlockDel = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuGroup = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolBlockAdd = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +74,6 @@
             this.tsslversion = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslServerStartTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.toolBlockNameEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuBlock.SuspendLayout();
             this.contextMenuGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTags)).BeginInit();
@@ -94,7 +95,7 @@
             this.treeTags.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.treeTags.Location = new System.Drawing.Point(3, 17);
             this.treeTags.Name = "treeTags";
-            this.treeTags.Size = new System.Drawing.Size(205, 619);
+            this.treeTags.Size = new System.Drawing.Size(205, 687);
             this.treeTags.TabIndex = 0;
             this.treeTags.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeTags_MouseDoubleClick);
             this.treeTags.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeTags_MouseDown);
@@ -117,19 +118,26 @@
             this.toolBlockNameEdit,
             this.toolBlockDel});
             this.contextMenuBlock.Name = "toolSave";
-            this.contextMenuBlock.Size = new System.Drawing.Size(153, 92);
+            this.contextMenuBlock.Size = new System.Drawing.Size(133, 70);
             // 
             // toolTagAdd
             // 
             this.toolTagAdd.Name = "toolTagAdd";
-            this.toolTagAdd.Size = new System.Drawing.Size(152, 22);
+            this.toolTagAdd.Size = new System.Drawing.Size(132, 22);
             this.toolTagAdd.Text = "Tag新增";
             this.toolTagAdd.Click += new System.EventHandler(this.toolTagAdd_Click);
+            // 
+            // toolBlockNameEdit
+            // 
+            this.toolBlockNameEdit.Name = "toolBlockNameEdit";
+            this.toolBlockNameEdit.Size = new System.Drawing.Size(132, 22);
+            this.toolBlockNameEdit.Text = "Block修改";
+            this.toolBlockNameEdit.Click += new System.EventHandler(this.toolBlockNameEdit_Click);
             // 
             // toolBlockDel
             // 
             this.toolBlockDel.Name = "toolBlockDel";
-            this.toolBlockDel.Size = new System.Drawing.Size(152, 22);
+            this.toolBlockDel.Size = new System.Drawing.Size(132, 22);
             this.toolBlockDel.Text = "Block删除";
             this.toolBlockDel.Click += new System.EventHandler(this.toolBlockDel_Click);
             // 
@@ -158,14 +166,14 @@
             // dataGridTags
             // 
             this.dataGridTags.AllowUserToAddRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridTags.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridTags.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridTags.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridTags.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TagName,
@@ -176,31 +184,32 @@
             this.DataType,
             this.Group,
             this.Message});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridTags.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridTags.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridTags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridTags.Location = new System.Drawing.Point(3, 17);
             this.dataGridTags.Name = "dataGridTags";
             this.dataGridTags.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridTags.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridTags.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridTags.RowTemplate.Height = 23;
             this.dataGridTags.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridTags.Size = new System.Drawing.Size(895, 539);
+            this.dataGridTags.Size = new System.Drawing.Size(791, 600);
             this.dataGridTags.TabIndex = 118;
             this.dataGridTags.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridTags_CellMouseUp);
+            this.dataGridTags.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridTags_RowPostPaint);
             // 
             // TagName
             // 
@@ -349,6 +358,8 @@
             this.cmbInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbInterval.FormattingEnabled = true;
             this.cmbInterval.Items.AddRange(new object[] {
+            "50",
+            "100",
             "250",
             "500",
             "1000",
@@ -427,7 +438,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(211, 639);
+            this.groupBox2.Size = new System.Drawing.Size(211, 707);
             this.groupBox2.TabIndex = 128;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tag总览";
@@ -438,7 +449,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(901, 559);
+            this.groupBox3.Size = new System.Drawing.Size(797, 620);
             this.groupBox3.TabIndex = 129;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tag明细";
@@ -449,9 +460,9 @@
             this.tsslServerState,
             this.tsslversion,
             this.tsslServerStartTime});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 639);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 707);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1112, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
             this.statusStrip1.TabIndex = 130;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -491,25 +502,19 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
-            this.splitContainer1.Size = new System.Drawing.Size(901, 639);
-            this.splitContainer1.SplitterDistance = 76;
+            this.splitContainer1.Size = new System.Drawing.Size(797, 707);
+            this.splitContainer1.SplitterDistance = 83;
             this.splitContainer1.TabIndex = 131;
-            // 
-            // toolBlockNameEdit
-            // 
-            this.toolBlockNameEdit.Name = "toolBlockNameEdit";
-            this.toolBlockNameEdit.Size = new System.Drawing.Size(152, 22);
-            this.toolBlockNameEdit.Text = "Block修改";
-            this.toolBlockNameEdit.Click += new System.EventHandler(this.toolBlockNameEdit_Click);
             // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1112, 661);
+            this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.statusStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Setting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Monitor";

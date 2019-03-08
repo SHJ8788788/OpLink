@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -59,7 +60,8 @@ namespace OpLink
             catch (Exception ex)
             {
                 //消息通知
-                AddMsgToList("通讯服务器校验结果：" + ex.ToString());
+                LogHelper.Info("通讯服务器校验结果：" + ex.ToString());
+                AddMsgToList("通讯服务器校验结果：" + ex.ToString());                
                 return;
             }
   
@@ -198,19 +200,7 @@ namespace OpLink
                         .WithParameters(ListNamedParameter)
                         .SingleInstance();
                 }
-            }
-            //using (Autofac.IContainer container = builder.Build())
-            //{               
-            //    tagServices.Clear();
-            //    foreach (var serviceName in serviceNames)
-            //    {
-            //        ITagService tagService = container.ResolveNamed<ITagService>(serviceName); 
-            //        tagService.MsgHandle = AddMsgToList;
-            //        tagService.Connect();
-            //        tagServices.Add(serviceName, tagService);
-            //        AddMsgToList(serviceName+" > "+"[Loaded]");
-            //    }
-            //}
+            }         
             
             //构建容器来完成注册并准备对象解析。
             Autofac.IContainer container = builder.Build();
@@ -351,6 +341,9 @@ namespace OpLink
                 AppDomain.CurrentDomain.AppendPrivatePath(path);
             }
         }
+
+        [DllImport("USER32.DLL")]
+       public static extern bool SetForegroundWindow(IntPtr hWnd);
         #endregion
         #region 事件
         private void btnStart_Click(object sender, EventArgs e)
@@ -368,17 +361,18 @@ namespace OpLink
         /// <param name="tag"></param>
         private void TagValueChanged(Tag tag)
         {
+            LogHelper.Info($"TagName={tag.TagName},Value={tag.Value},DataType={tag.DataType}");
             foreach (var dic in tagServices)
             {
                 Task.Run(() =>
                 {
                     try
                     {
-                        dic.Value.TagChangedExecute(tag);
+                        dic.Value.TagChangedExecute(tag);                        
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        Console.WriteLine(e.ToString());
+                        LogHelper.Error(ex.ToString());
                     }
                 });               
             }
@@ -424,7 +418,8 @@ namespace OpLink
             //If there is more than one process   
             if (processes.Length >=1)
             {
-                AddMsgToList("OpMonitor.exe启动失败,【已启动实例】...");
+                SetForegroundWindow(processes.FirstOrDefault().Handle);
+                //AddMsgToList("OpMonitor.exe启动失败,【已启动实例】...");
                 return;
             }
             else

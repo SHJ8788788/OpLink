@@ -1,6 +1,7 @@
 ﻿using EasySocket.vs13.Core;
 using EasySocket.vs13.Serializers;
 using EasySocket.vs13.Telegram.Easy;
+using EasySocketService.PF;
 using Models;
 using OpcClient;
 using OpLink.Interface;
@@ -19,7 +20,8 @@ namespace EasySocketService
     public class ServiceForEasySocket: TagServiceBase
     {
         private IOpcClient opcClient;
-        private static string serviceName = "EasySocket"; 
+        private static string serviceName = "EasySocket";
+        private TcpClientForPF client;
 
         /// <summary>
         /// 连接EasySocket服务器
@@ -35,7 +37,7 @@ namespace EasySocketService
             else
             {
                 MsgHandle(serviceName+">服务器无法连接");
-            }
+            }           
         }
 
         public ServiceForEasySocket(IOpcClient opcClient,int runInterval) : base(runInterval = 5000)
@@ -78,8 +80,19 @@ namespace EasySocketService
             EasyTcpClient.Instance.ReconnectCompleteHandle = () => { ClientProxy.Verification("opc"); };
             //顷绑定当前程序集
             EasyTcpClient.Instance.BindService(Assembly.GetExecutingAssembly());
+            PFClientInit();
         }
 
+        /// <summary>
+        /// PF线钩号接收-通讯初始化
+        /// </summary>
+        public void PFClientInit()
+        {
+            client = new TcpClientForPF();
+            var succ = client.Connect("172.15.1.28", 50000);
+            client.ReconnectEnable = true;
+            client.PFValueChangedHandle = PFTagChangedExecute;
+        }
         /// <summary>
         /// 周期执行
         /// </summary>
@@ -95,7 +108,19 @@ namespace EasySocketService
         /// </summary>
         /// <param name="tag"></param>
         public override void TagChangedExecute(Tag tag)
-        {            
+        {
+            ClientProxy.TagEventChange(new TagSimple { TagName = tag.TagName, TagValue = tag.Value.ToString(), TagTypeName = tag.DataType});
+        }
+
+        /// <summary>
+        /// 钩号变化后触发
+        /// </summary>
+        /// <param name="tag"></param>
+        private void PFTagChangedExecute(Tag tag)
+        {
+            ClientProxy.TagEventChange(new TagSimple { TagName = tag.TagName, TagValue = tag.Value.ToString(), TagTypeName = tag.DataType });
+            Console.WriteLine(string.Format("TagName={0}, Value={1}, DataType={2}", tag.TagName, tag.Value, tag.DataType));
+            Log4Ex.LogHelper.Debug(string.Format("TagName={0}, Value={1}, DataType={2}", tag.TagName, tag.Value, tag.DataType));
         }
         /// <summary>
         /// 接收消息通知

@@ -164,7 +164,11 @@ namespace OpcClient
             get { return value; }
             set
             {
-                if (this.value != value)
+                //旧值为Null,新值不为Null时更新
+                //旧值不为Null,新值不为Null,且两个值不相等时更新
+                if (((this.value != null && value != null) && !this.value.Equals(value))||
+                    this.value==null &&value!=null)
+                //if (this.value != value)
                 {
                     this.value = value;
                     //值变化时，执行历史记录
