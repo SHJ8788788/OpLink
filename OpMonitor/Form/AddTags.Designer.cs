@@ -39,8 +39,8 @@
             this.tsslTagsNum = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCheckRepeat = new System.Windows.Forms.Button();
-            this.btnAddTags = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnAddTags = new System.Windows.Forms.Button();
             this.contextMenuTags = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripTagDel = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
@@ -56,10 +56,11 @@
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AccessLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblGroup = new System.Windows.Forms.Label();
-            this.lblBlock = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblGroup = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblBlock = new System.Windows.Forms.Label();
             this.chkAll = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridTags = new System.Windows.Forms.DataGridView();
@@ -70,6 +71,7 @@
             this.TimeStamps = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Group = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Block = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.contextMenuTags.SuspendLayout();
@@ -87,6 +89,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItems)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTags)).BeginInit();
             this.SuspendLayout();
@@ -117,17 +120,16 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btnCheckRepeat);
-            this.panel1.Controls.Add(this.btnAddTags);
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 649);
+            this.panel1.Location = new System.Drawing.Point(0, 666);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1030, 58);
+            this.panel1.Size = new System.Drawing.Size(1030, 41);
             this.panel1.TabIndex = 122;
             // 
             // btnCheckRepeat
             // 
-            this.btnCheckRepeat.Location = new System.Drawing.Point(421, 20);
+            this.btnCheckRepeat.Location = new System.Drawing.Point(508, 9);
             this.btnCheckRepeat.Name = "btnCheckRepeat";
             this.btnCheckRepeat.Size = new System.Drawing.Size(75, 23);
             this.btnCheckRepeat.TabIndex = 0;
@@ -135,25 +137,25 @@
             this.btnCheckRepeat.UseVisualStyleBackColor = true;
             this.btnCheckRepeat.Click += new System.EventHandler(this.btnCheckRepeat_Click);
             // 
-            // btnAddTags
-            // 
-            this.btnAddTags.Location = new System.Drawing.Point(519, 20);
-            this.btnAddTags.Name = "btnAddTags";
-            this.btnAddTags.Size = new System.Drawing.Size(75, 23);
-            this.btnAddTags.TabIndex = 0;
-            this.btnAddTags.Text = "新增";
-            this.btnAddTags.UseVisualStyleBackColor = true;
-            this.btnAddTags.Click += new System.EventHandler(this.btnAddTags_Click);
-            // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(610, 20);
+            this.btnSave.Location = new System.Drawing.Point(610, 9);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnAddTags
+            // 
+            this.btnAddTags.Location = new System.Drawing.Point(16, 37);
+            this.btnAddTags.Name = "btnAddTags";
+            this.btnAddTags.Size = new System.Drawing.Size(87, 26);
+            this.btnAddTags.TabIndex = 0;
+            this.btnAddTags.Text = "新增";
+            this.btnAddTags.UseVisualStyleBackColor = true;
+            this.btnAddTags.Click += new System.EventHandler(this.btnAddTags_Click);
             // 
             // contextMenuTags
             // 
@@ -183,8 +185,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer3.Size = new System.Drawing.Size(1030, 649);
-            this.splitContainer3.SplitterDistance = 407;
+            this.splitContainer3.Size = new System.Drawing.Size(1030, 666);
+            this.splitContainer3.SplitterDistance = 417;
             this.splitContainer3.TabIndex = 118;
             // 
             // groupBox1
@@ -193,7 +195,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1030, 407);
+            this.groupBox1.Size = new System.Drawing.Size(1030, 417);
             this.groupBox1.TabIndex = 120;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "OPC Nodes";
@@ -211,8 +213,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1024, 387);
-            this.splitContainer1.SplitterDistance = 237;
+            this.splitContainer1.Size = new System.Drawing.Size(1024, 397);
+            this.splitContainer1.SplitterDistance = 240;
             this.splitContainer1.TabIndex = 0;
             // 
             // treeViewBranches
@@ -220,7 +222,7 @@
             this.treeViewBranches.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewBranches.Location = new System.Drawing.Point(0, 0);
             this.treeViewBranches.Name = "treeViewBranches";
-            this.treeViewBranches.Size = new System.Drawing.Size(237, 387);
+            this.treeViewBranches.Size = new System.Drawing.Size(240, 397);
             this.treeViewBranches.TabIndex = 1;
             this.treeViewBranches.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeViewBranches_BeforeExpand);
             this.treeViewBranches.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeViewBranches_AfterExpand);
@@ -238,13 +240,11 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.lblGroup);
-            this.splitContainer2.Panel2.Controls.Add(this.lblBlock);
-            this.splitContainer2.Panel2.Controls.Add(this.label2);
-            this.splitContainer2.Panel2.Controls.Add(this.label1);
+            this.splitContainer2.Panel2.Controls.Add(this.groupBox3);
+            this.splitContainer2.Panel2.Controls.Add(this.btnAddTags);
             this.splitContainer2.Panel2.Controls.Add(this.chkAll);
-            this.splitContainer2.Size = new System.Drawing.Size(783, 387);
-            this.splitContainer2.SplitterDistance = 566;
+            this.splitContainer2.Size = new System.Drawing.Size(780, 397);
+            this.splitContainer2.SplitterDistance = 619;
             this.splitContainer2.TabIndex = 2;
             // 
             // dataGridViewItems
@@ -271,7 +271,7 @@
             this.dataGridViewItems.RowHeadersVisible = false;
             this.dataGridViewItems.RowTemplate.Height = 23;
             this.dataGridViewItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewItems.Size = new System.Drawing.Size(566, 387);
+            this.dataGridViewItems.Size = new System.Drawing.Size(619, 397);
             this.dataGridViewItems.TabIndex = 118;
             // 
             // checkBox
@@ -324,55 +324,70 @@
             this.Description.ToolTipText = "数据的文本描述";
             this.Description.Width = 140;
             // 
-            // lblGroup
+            // groupBox3
             // 
-            this.lblGroup.AutoSize = true;
-            this.lblGroup.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblGroup.Location = new System.Drawing.Point(3, 53);
-            this.lblGroup.Name = "lblGroup";
-            this.lblGroup.Size = new System.Drawing.Size(63, 14);
-            this.lblGroup.TabIndex = 2;
-            this.lblGroup.Text = "lblGroup";
-            // 
-            // lblBlock
-            // 
-            this.lblBlock.AutoSize = true;
-            this.lblBlock.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblBlock.Location = new System.Drawing.Point(3, 96);
-            this.lblBlock.Name = "lblBlock";
-            this.lblBlock.Size = new System.Drawing.Size(63, 14);
-            this.lblBlock.TabIndex = 2;
-            this.lblBlock.Text = "lblBlock";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(3, 79);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 14);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "数据块:";
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.lblGroup);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.lblBlock);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox3.Location = new System.Drawing.Point(0, 99);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(157, 298);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "当前位置";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(3, 35);
+            this.label1.Location = new System.Drawing.Point(17, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 14);
             this.label1.TabIndex = 2;
             this.label1.Text = "分组:";
             // 
+            // lblGroup
+            // 
+            this.lblGroup.AutoSize = true;
+            this.lblGroup.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblGroup.Location = new System.Drawing.Point(17, 46);
+            this.lblGroup.Name = "lblGroup";
+            this.lblGroup.Size = new System.Drawing.Size(63, 14);
+            this.lblGroup.TabIndex = 2;
+            this.lblGroup.Text = "lblGroup";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(17, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 14);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "数据块:";
+            // 
+            // lblBlock
+            // 
+            this.lblBlock.AutoSize = true;
+            this.lblBlock.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblBlock.Location = new System.Drawing.Point(17, 89);
+            this.lblBlock.Name = "lblBlock";
+            this.lblBlock.Size = new System.Drawing.Size(63, 14);
+            this.lblBlock.TabIndex = 2;
+            this.lblBlock.Text = "lblBlock";
+            // 
             // chkAll
             // 
             this.chkAll.AutoSize = true;
             this.chkAll.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.chkAll.Location = new System.Drawing.Point(2, 9);
+            this.chkAll.Location = new System.Drawing.Point(15, 9);
             this.chkAll.Name = "chkAll";
-            this.chkAll.Size = new System.Drawing.Size(54, 18);
+            this.chkAll.Size = new System.Drawing.Size(89, 18);
             this.chkAll.TabIndex = 1;
-            this.chkAll.Text = "全选";
+            this.chkAll.Text = "全选/反选";
             this.chkAll.UseVisualStyleBackColor = true;
             this.chkAll.CheckedChanged += new System.EventHandler(this.chkAll_CheckedChanged);
             // 
@@ -382,7 +397,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1030, 238);
+            this.groupBox2.Size = new System.Drawing.Size(1030, 245);
             this.groupBox2.TabIndex = 121;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tag新增";
@@ -406,7 +421,8 @@
             this.Qualities,
             this.TimeStamps,
             this.DataType,
-            this.Group});
+            this.Group,
+            this.Block});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -428,7 +444,7 @@
             this.dataGridTags.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridTags.RowTemplate.Height = 23;
             this.dataGridTags.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridTags.Size = new System.Drawing.Size(1024, 218);
+            this.dataGridTags.Size = new System.Drawing.Size(1024, 225);
             this.dataGridTags.TabIndex = 117;
             this.dataGridTags.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridTags_CellMouseUp);
             // 
@@ -472,6 +488,11 @@
             this.Group.HeaderText = "分组";
             this.Group.Name = "Group";
             // 
+            // Block
+            // 
+            this.Block.HeaderText = "数据块";
+            this.Block.Name = "Block";
+            // 
             // AddTags
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -504,6 +525,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItems)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTags)).EndInit();
             this.ResumeLayout(false);
@@ -533,13 +556,6 @@
         private System.Windows.Forms.CheckBox chkAll;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridTags;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TagName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OpcTagName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Qualities;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeStamps;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Group;
         private System.Windows.Forms.DataGridView dataGridViewItems;
         private System.Windows.Forms.DataGridViewCheckBoxColumn checkBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn DisplayName;
@@ -548,5 +564,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn AccessLevel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TagName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OpcTagName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Qualities;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeStamps;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Group;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Block;
     }
 }

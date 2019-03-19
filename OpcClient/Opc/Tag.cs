@@ -46,7 +46,8 @@ namespace OpcClient
             TagName = default(string);
             OpcTagName = default(string);
             GroupName = default(string);
-            DataType = default(string);
+            //DataTypeName = default(string);
+            DataType = default(Type);
             Qualities = default(string);
             TimeStamps = default(DateTime);
             Message = default(string);
@@ -138,8 +139,21 @@ namespace OpcClient
         /// 本地组名
         /// </summary>
         public string GroupName { get; set; }
+        //数据类型名称
+        public string DataTypeName
+        {
+            get
+            {
+                if (DataType !=null)
+                {
+                    return DataType.Name;
+                }
+                else
+                {
+                    return "";
+                }  }}
         //数据类型
-        public string DataType { get; set; }
+        public Type DataType { get; set; }
         /// <summary>
         /// 质量
         /// </summary>
@@ -220,6 +234,7 @@ namespace OpcClient
                 TagName = this.TagName,
                 OpcTagName = this.OpcTagName,
                 GroupName = this.GroupName,
+                //DataTypeName = this.DataTypeName,
                 DataType = this.DataType,
                 Qualities = this.Qualities,
                 TimeStamps = this.TimeStamps,

@@ -42,10 +42,6 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dotnet\EasySocket.vs13\bin\x86\Debug\Client\Models.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -121,6 +117,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\EasySocket.vs13\Models\Models.csproj">
+      <Project>{ac838723-d1eb-4767-bcb5-9a73aea0cecc}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpcClient\OpcClient.csproj">
       <Project>{5d74d287-8b9a-4d2b-b937-e3375cf7c044}</Project>
       <Name>OpcClient</Name>
@@ -153,7 +153,7 @@
       <Link>Lib\HPSocket4C_UD.dll</Link>
     </Content>
     <Content Include="Config\tags.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="log4net.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -41,9 +41,6 @@
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Models">
-      <HintPath>..\..\..\dotnet\EasySocket.vs13\bin\x86\Debug\Client\Models.dll</HintPath>
-    </Reference>
     <Reference Include="protobuf-net">
       <HintPath>..\..\..\dotnet\EasySocket.vs13\bin\x86\Debug\EasySocket\protobuf-net.dll</HintPath>
     </Reference>
@@ -68,6 +65,10 @@
     <ProjectReference Include="..\..\EasySocket.vs13\EasySocket.vs13\EasySocket.vs13.csproj">
       <Project>{89e6a40c-bddd-4835-b9e8-7585274e7e51}</Project>
       <Name>EasySocket.vs13</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EasySocket.vs13\Models\Models.csproj">
+      <Project>{ac838723-d1eb-4767-bcb5-9a73aea0cecc}</Project>
+      <Name>Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\OpcClient\OpcClient.csproj">
       <Project>{5d74d287-8b9a-4d2b-b937-e3375cf7c044}</Project>

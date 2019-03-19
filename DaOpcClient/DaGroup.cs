@@ -130,7 +130,7 @@ namespace DaOpcClient
                 //关键，此步骤将标签添加入OPCclient的监听列表中
                 OPCItem ki = items.AddItem(bi.OpcTagName, itmHandleBegin);
                 bi.ExtraAs<DaExtra>().ItmHandleClient = itmHandleBegin;
-                bi.DataType = DaOpcTypes.GetEnumTypeRemarkByValue(ki.CanonicalDataType);
+                //bi.DataTypeName = DaOpcTypes.GetEnumTypeRemarkByValue(ki.CanonicalDataType);
                 bi.ExtraAs<DaExtra>().ItmHandleServer = ki.ServerHandle;
                 Tags.Add((Tag)(Object)bi);
                 AddItemsComplete?.Invoke(this);
@@ -197,7 +197,8 @@ namespace DaOpcClient
 
                         //设置标签的数据类型及ServerHandle
                         OPCItem ki = items.GetOPCItem((int)ItemServerHandles.GetValue(i));
-                        biList[i - 1].DataType = DaOpcTypes.GetEnumTypeRemarkByValue(ki.CanonicalDataType);
+                        //biList[i - 1].DataTypeName = DaOpcTypes.GetEnumTypeRemarkByValue(ki.CanonicalDataType);
+                        biList[i - 1].DataType = DaOpcTypes.GetEnumTypeByValue(ki.CanonicalDataType);
                         biList[i - 1].ExtraAs<DaExtra>().ItmHandleServer = (int)ItemServerHandles.GetValue(i);
                     }
                     else
@@ -320,15 +321,15 @@ namespace DaOpcClient
                 throw;
             }
         }
-        public List<Tag> GetTags(List<string> tagNames= null)
+        public IEnumerable<Tag> GetTags(List<string> tagNames= null)
         {
             if (tagNames==null)
             {
-                return Tags.ToList();
+                return Tags;
             }
             else
             {
-                return Tags.Where(t => tagNames.Contains(t.TagName)).ToList();
+                return Tags.Where(t => tagNames.Contains(t.TagName));
             }            
         }
         public Tag GetTagValue(string tagName)
@@ -399,7 +400,8 @@ namespace DaOpcClient
                     }
                     //标签值,必须写在最后，值变化会触发事件处理，其它值必须在此之前完成赋值
                     tag.Value = ItemValues.GetValue(i);
-                    tag.DataType = ItemValues.GetValue(i).GetType().ToString();
+                    //tag.DataTypeName = ItemValues.GetValue(i).GetType().ToString();
+                    tag.DataType = ItemValues.GetValue(i).GetType();
                 }
                 //Console.WriteLine("**********" + daTagsData[0].Value + "*******" + daTagsData[1].Value + "*******" + daTagsData[2].Value + "*******" + daTagsData[3].Value);
             }

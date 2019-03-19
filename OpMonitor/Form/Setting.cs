@@ -23,10 +23,14 @@ namespace OpMonitor
         private string groupName = "";
         private string blockName = "";
         private OpcAddressConfiguration opcConfig;
+        private ImageList imageList = new ImageList();
 
         public Setting()
         {
             InitializeComponent();
+            imageList.Images.Add("grid_Data_16xLG", Properties.Resources.grid_Data_16xLG);
+            imageList.Images.Add("Enum_582", Properties.Resources.Enum_582);
+            treeTags.ImageList = imageList;
             this.dataGridTags.DoubleBufferedDataGirdView(true);
         }
 
@@ -38,7 +42,7 @@ namespace OpMonitor
             CLRPrivatePathInit();
             //加载xml
             XElement doc = XElement.Load(TagConfig.Path);//将加载完成的XML文件显示在TreeView控件中
-            RecursionTreeControl(doc, treeTags.Nodes);
+            RecursionTreeControl(doc, treeTags.Nodes);         
             treeTags.ExpandAll();//展开TreeView控件中的所有项 
 
             #region OpcClient初始化  
@@ -103,10 +107,19 @@ namespace OpMonitor
         {
             int level = lev + 1;
             foreach (XElement node in xmlList.Elements())
-            {
+            {                
                 if (level <= levelMax)
                 {
                     TreeNode new_child = new TreeNode();//定义一个TreeNode节点对象
+                    //图标
+                    if (level == 1)
+                    {
+                        new_child.ImageIndex= new_child.SelectedImageIndex = 0;
+                    }
+                    else
+                    {
+                        new_child.ImageIndex = new_child.SelectedImageIndex = 1;
+                    }
 
                     new_child.Name = node.Attribute("Name").Value;
 
@@ -119,7 +132,7 @@ namespace OpMonitor
                 {
                     return;
                 }
-            }
+            }            
         }
         /// <summary>
         /// 重载dataGridTags的Tag定义
@@ -173,7 +186,7 @@ namespace OpMonitor
             {                
                 dataGridTags.Rows[i].Cells["OpcTagName"].Value = (tags[i]).OpcTagName;
                 dataGridTags.Rows[i].Cells["TagName"].Value = (tags[i]).TagName;
-                dataGridTags.Rows[i].Cells["DataType"].Value = (tags[i]).DataType;
+                dataGridTags.Rows[i].Cells["DataType"].Value = (tags[i]).DataTypeName;
                 dataGridTags.Rows[i].Cells["Value"].Value = (tags[i]).Value;
                 dataGridTags.Rows[i].Cells["Qualities"].Value = (tags[i]).Qualities;
                 dataGridTags.Rows[i].Cells["TimeStamps"].Value = (tags[i]).TimeStamps;
@@ -199,6 +212,14 @@ namespace OpMonitor
                 //opc中重新加入tag
                 client[groupName].AddItems(listIn);
                 client.RefreshGroupByGroupName(groupName);
+                //if (!client[groupName].GetTags().Any())
+                //{
+                //    client[groupName].AddItems(listIn);
+                //}
+                //else
+                //{
+                //    client.RefreshGroupByGroupName(groupName);
+                //}
             }
             catch (Exception e)
             {
@@ -316,12 +337,31 @@ namespace OpMonitor
                 AppDomain.CurrentDomain.AppendPrivatePath(path);
             }
         }
+        /// <summary>
+        /// 增加树图标
+        /// </summary>
+        /// <param name="tn"></param>
+        private void SetIcon(TreeNode tn)
+        {
+            foreach (TreeNode node in tn.Nodes)
+            {
+                if (node.Nodes.Count > 0)
+                {
+                    node.ImageIndex = 0;
+                    SetIcon(node);
+                }
+                else
+                {
+                    node.ImageIndex = 1;
+                }
+            }
+
+        }
         #endregion
         #region 事件
         //双击显示gridTags
         private void treeTags_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //右键点击，弹出对应的菜单
             if (e.Button == MouseButtons.Left)
             {
                 //确定右键的位置  

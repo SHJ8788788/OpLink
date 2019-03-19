@@ -150,7 +150,7 @@ namespace UaOpcClient
         {
             this.Address = address;
             this.reconnectEnable = address.ReconnectEnable;
-            this.reconnectInterval = address.ReconnectInterval;
+            this.reconnectInterval = address.ReconnectInterval*1000;
         }
 
         public bool RemoveGroupByGroupName(string groupName)
@@ -188,7 +188,7 @@ namespace UaOpcClient
             {
                 sourceId = nodeId;
             }
-            return ShowMember(sourceId);
+            return ShowMemberWithExpand(sourceId);
             //// fetch references from the server.
             //return Task.Run(() =>
             //{
@@ -228,21 +228,30 @@ namespace UaOpcClient
         /// <param name="monitoredItem"></param>
         /// <param name="eventArgs"></param>
         private void SubCallBack(string groupName, MonitoredItem monitoredItem, MonitoredItemNotificationEventArgs eventArgs)
-        {          
+        {
             MonitoredItemNotification notification = eventArgs.NotificationValue as MonitoredItemNotification;
-            if (this.groupDictionary.Count()==0)
+            if (this.groupDictionary.Count() == 0)
             {
                 return;
             }
-            if (this.groupDictionary[groupName].GetTags().Where(p => p.OpcTagName == monitoredItem.StartNodeId.ToString()).Count()!=0)
+            var nodeId = Convert.ToString(monitoredItem.StartNodeId);
+            //Linq：切勿使用 Count() > 0 来判断集合非空,存在性能问题,应改用Any
+            var tag = this.groupDictionary[groupName].GetTags().Where(p => p.OpcTagName.Equals(nodeId)).FirstOrDefault();
+            //var tag = this.groupDictionary[groupName].GetTags().Where(p => p.OpcTagName.Equals(nodeId)).FirstOrDefault();
+            if (tag != null)
             {
-                var tag = this.groupDictionary[groupName].GetTags().Where(p => p.OpcTagName == monitoredItem.StartNodeId.ToString()).FirstOrDefault();
                 //标签时间戳
                 tag.TimeStamps = Convert.ToDateTime(DateTime.Now);
                 tag.Qualities = "Good";
                 //标签值,必须写在最后，值变化会触发事件处理，其它值必须在此之前完成赋值
                 tag.Value = notification.Value.WrappedValue.Value;
-                tag.DataType = notification.Value.WrappedValue.TypeInfo.ToString();
+                //tag.DataType = typeof(Int32);
+                tag.DataType = TypeInfo.GetSystemType(notification.Value.WrappedValue.TypeInfo.BuiltInType, notification.Value.WrappedValue.TypeInfo.ValueRank);
+                //tag.DataTypeName = notification.Value.WrappedValue.TypeInfo.ToString();
+            }
+            else
+            {
+                //不处理
             }
         }
         //连接OPC
@@ -357,11 +366,57 @@ namespace UaOpcClient
             BrowseDescriptionCollection nodesToBrowse = new BrowseDescriptionCollection();
             nodesToBrowse.Add(nodeToBrowse1);
             nodesToBrowse.Add(nodeToBrowse2);
-
+            
             // fetch references from the server.
-            ReferenceDescriptionCollection references = FormUtils.Browse(base.Session, nodesToBrowse, false);
+            ReferenceDescriptionCollection references = FormUtils.Browse(base.Session, nodesToBrowse, false);           
             return references;
         }
+        /// <summary>
+        /// 根据ID号查询下一级子节点集合
+        /// </summary>
+        /// <param name="sourceId"></param>
+        /// <returns></returns>
+        private List<OpcNode> ShowMember_test(NodeId sourceId)
+        {
+            ReferenceDescriptionCollection references = GetReferenceDescriptionCollection(sourceId);
+            if (references?.Count > 0)
+            {
+                // 获取所有要读取的子节点
+                List<OpcNode> opcNodes = new List<OpcNode>();
+
+                System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+                watch.Start();  //开始监视代码运行时间
+
+                for (int ii = 0; ii < references.Count; ii++)
+                {
+                    ReferenceDescription target = references[ii];
+                    //不为属性变量则显示
+                    //if (target.NodeClass!=NodeClass.Variable)
+                    //{
+                    //    nodeIds.Add((NodeId)target.NodeId);
+                    //} 
+
+                    string key = GetImageKeyFromDescription(target, sourceId); 
+                    OpcNode child = new OpcNode(Utils.Format("{0}", target), target.NodeId.ToString(), key);
+                    child.Attribute = ReadOneNodeFiveAttribute(target.NodeId.ToString());
+                    if (child.Attribute!=null)
+                    {
+                        opcNodes.Add(child);
+                    }                
+                }
+                //需要测试的代码
+                watch.Stop();  //停止监视
+                TimeSpan timespan = watch.Elapsed;  //获取当前实例测量得出的总时间
+                System.Diagnostics.Debug.WriteLine("打开窗口代码执行时间：{0}(毫秒)", timespan.TotalMilliseconds);  //总毫秒数
+                return opcNodes;
+            }
+            else
+            {
+                return new List<OpcNode>();
+            }
+        }
+
+
         /// <summary>
         /// 根据ID号查询下一级子节点集合
         /// </summary>
@@ -374,6 +429,52 @@ namespace UaOpcClient
             {
                 // 获取所有要读取的子节点
                 List<OpcNode> opcNodes = new List<OpcNode>();
+
+                System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+                watch.Start();  //开始监视代码运行时间
+
+                for (int ii = 0; ii < references.Count; ii++)
+                {
+                    ReferenceDescription target = references[ii];
+                    //不为属性变量则显示
+                    //if (target.NodeClass!=NodeClass.Variable)
+                    //{
+                    //    nodeIds.Add((NodeId)target.NodeId);
+                    //} 
+
+                    string key = GetImageKeyFromDescription(target, sourceId);
+                    OpcNode child = new OpcNode(Utils.Format("{0}", target), target.NodeId.ToString(), key);
+                    child.Attribute = ReadOneNodeFiveAttribute(target.NodeId.ToString());
+                    if (child.Attribute != null)
+                    {
+                        opcNodes.Add(child);
+                    }
+                }
+                //需要测试的代码
+                watch.Stop();  //停止监视
+                TimeSpan timespan = watch.Elapsed;  //获取当前实例测量得出的总时间
+                System.Diagnostics.Debug.WriteLine("打开窗口代码执行时间：{0}(毫秒)", timespan.TotalMilliseconds);  //总毫秒数
+                return opcNodes;
+            }
+            else
+            {
+                return new List<OpcNode>();
+            }
+        }
+
+        /// <summary>
+        /// 根据ID号查询下一级子节点集合,包括子节点的可展开标志
+        /// </summary>
+        /// <param name="sourceId"></param>
+        /// <returns></returns>
+        private List<OpcNode> ShowMemberWithExpand(NodeId sourceId)
+        {
+            ReferenceDescriptionCollection references = GetReferenceDescriptionCollection(sourceId);
+            if (references?.Count > 0)
+            {
+                // 获取所有要读取的子节点
+                List<OpcNode> opcNodes = new List<OpcNode>();
+
                 for (int ii = 0; ii < references.Count; ii++)
                 {
                     ReferenceDescription target = references[ii];
@@ -384,18 +485,17 @@ namespace UaOpcClient
                     //} 
                     string key = GetImageKeyFromDescription(target, sourceId);
                     bool isExpand = false;
-                    if (GetReferenceDescriptionCollection((NodeId)target.NodeId).Count > 0)
+                    if (GetReferenceDescriptionCollection((NodeId)target.NodeId).Any())
                     {
                         isExpand = true;
                     }
                     OpcNode child = new OpcNode(Utils.Format("{0}", target), target.NodeId.ToString(), key, isExpand);
                     child.Attribute = ReadOneNodeFiveAttribute(target.NodeId.ToString());
-                    if (child.Attribute!=null)
+                    if (child.Attribute != null)
                     {
                         opcNodes.Add(child);
-                    }                    
+                    }
                 }
-           
                 return opcNodes;
             }
             else
@@ -403,6 +503,7 @@ namespace UaOpcClient
                 return new List<OpcNode>();
             }
         }
+
         /// <summary>
         /// 根据ID号查询节点属性
         /// 0:NodeClass  1:Value  2:AccessLevel  3:DisplayName  4:Description
@@ -548,10 +649,62 @@ namespace UaOpcClient
                 return "null";
             }
         }
-
+        /// <summary>
+        /// 地址转换
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
         private string AddressResolve(OpcAddressConfiguration address)
         {           
             return address.UaAddress.Uri;
+        }
+        /// <summary>
+        /// 根据类名返回类型
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private static Type GetTypeByString(string type)
+        {
+            switch (type.ToLower())
+            {
+                case "bool":
+                    return Type.GetType("System.Boolean", true, true);
+                case "byte":
+                    return Type.GetType("System.Byte", true, true);
+                case "sbyte":
+                    return Type.GetType("System.SByte", true, true);
+                case "char":
+                    return Type.GetType("System.Char", true, true);
+                case "decimal":
+                    return Type.GetType("System.Decimal", true, true);
+                case "double":
+                    return Type.GetType("System.Double", true, true);
+                case "float":
+                    return Type.GetType("System.Single", true, true);
+                case "int":
+                    return Type.GetType("System.Int32", true, true);
+                case "uint":
+                    return Type.GetType("System.UInt32", true, true);
+                case "long":
+                    return Type.GetType("System.Int64", true, true);
+                case "ulong":
+                    return Type.GetType("System.UInt64", true, true);
+                case "object":
+                    return Type.GetType("System.Object", true, true);
+                case "short":
+                    return Type.GetType("System.Int16", true, true);
+                case "ushort":
+                    return Type.GetType("System.UInt16", true, true);
+                case "string":
+                    return Type.GetType("System.String", true, true);
+                case "date":
+                case "datetime":
+                    return Type.GetType("System.DateTime", true, true);
+                case "guid":
+                    return Type.GetType("System.Guid", true, true);
+                default:
+                    return Type.GetType(type, true, true);
+            }
         }
         #endregion
         #region Event

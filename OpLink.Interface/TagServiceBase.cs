@@ -37,8 +37,16 @@ namespace OpLink.Interface
         /// </summary>
         void ITagService.Connect()
         {
-            ///连接操作
+            //连接操作
             this.Connect();
+        }
+        /// <summary>
+        /// 断开服务器连接
+        /// </summary>
+        void ITagService.Disconnect()
+        {
+            //断开服务器连接
+            this.DisConnect();
         }
 
         /// <summary>
@@ -64,6 +72,11 @@ namespace OpLink.Interface
         /// </summary>
         public virtual void Connect()
         {          
+        }
+        //断开服务器连接
+        public virtual void DisConnect()
+        {
+
         }
 
         /// <summary>

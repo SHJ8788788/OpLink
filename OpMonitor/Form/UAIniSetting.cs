@@ -18,12 +18,15 @@ namespace OpMonitor
 {
     public partial class UAIniSetting : Form
     {
-        private OpcAddressConfiguration config;
+        private OpcAddressConfiguration opcConfig;
+        private TagConfiguration tagConfig;
         public UAIniSetting()
         {
             InitializeComponent();
             //设置默认选择项
-            config = ConfigurationManagerExtend.SectionsCast<OpcAddressConfiguration>("Address").FirstOrDefault().Value;
+            opcConfig = ConfigurationManagerExtend.SectionsCast<OpcAddressConfiguration>("Address").FirstOrDefault().Value;
+            tagConfig = ConfigurationManagerExtend.SectionsCast<TagConfiguration>("Tag").FirstOrDefault().Value;
+
 
             this.cmbOpcProtocol.Items.AddRange(new object[] { OpcProtocol.DA, OpcProtocol.UA });
             this.cmbUseSecurity.Items.AddRange(new object[] { true, false });
@@ -32,16 +35,17 @@ namespace OpMonitor
             this.cmbOpcProtocol.SelectedIndexChanged += new System.EventHandler(this.cmbOpcProtocol_SelectedIndexChanged);
             this.cmbUseSecurity.SelectedIndexChanged += new System.EventHandler(this.cmbUseSecurity_SelectedIndexChanged);
 
-            this.cmbOpcProtocol.SelectedItem = config.OpcProtocolByEnum;
-            this.txtIP.Text = config.DaAddress.Ip;
-            this.cmbServerName.Items.Add(config.DaAddress.ServerName);
+            this.cmbOpcProtocol.SelectedItem = opcConfig.OpcProtocolByEnum;
+            this.txtIP.Text = opcConfig.DaAddress.Ip;
+            this.cmbServerName.Items.Add(opcConfig.DaAddress.ServerName);
             this.cmbServerName.SelectedIndex = 0;
-            this.txtUri.Text = config.UaAddress.Uri;
-            this.txtUserName.Text = config.UaAddress.UserName;
-            this.txtPassword.Text = config.UaAddress.Password;
-            this.cmbUseSecurity.SelectedItem = config.UaAddress.UseSecurity;
-            this.cmbReconnectEnable.SelectedItem = config.ReconnectEnable;
-            this.txtReconnectInterval.Text = config.ReconnectInterval.ToString();
+            this.txtUri.Text = opcConfig.UaAddress.Uri;
+            this.txtUserName.Text = opcConfig.UaAddress.UserName;
+            this.txtPassword.Text = opcConfig.UaAddress.Password;
+            this.cmbUseSecurity.SelectedItem = opcConfig.UaAddress.UseSecurity;
+            this.cmbReconnectEnable.SelectedItem = opcConfig.ReconnectEnable;
+            this.cmbReconnectInterval.SelectedItem = opcConfig.ReconnectInterval.ToString();
+            this.cmbTagsQueueNum.SelectedItem = tagConfig.TagsQueueNum.ToString();
             LayoutInit();
         }
 
@@ -96,18 +100,18 @@ namespace OpMonitor
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-
+            //OPC设置
             OpcProtocol iOpcProtocol = (OpcProtocol)cmbOpcProtocol.SelectedItem;
-            config.OpcProtocol = Convert.ToInt32(iOpcProtocol);
-            config.OpcTypeName = txtTypeName.Text.ToString();
-            config.ReconnectInterval = Convert.ToInt32(txtReconnectInterval.Text);
-            config.ReconnectEnable = (Boolean)cmbReconnectEnable.SelectedItem;
+            opcConfig.OpcProtocol = Convert.ToInt32(iOpcProtocol);
+            opcConfig.OpcTypeName = txtTypeName.Text.ToString();
+            opcConfig.ReconnectInterval = Convert.ToInt32(cmbReconnectInterval.SelectedItem);
+            opcConfig.ReconnectEnable = (Boolean)cmbReconnectEnable.SelectedItem;            
             if (iOpcProtocol == OpcProtocol.DA)
             {
                 var iIp = txtIP.Text;
                 var iServerName = cmbServerName.Text;
-                config.DaAddress.Ip = iIp.ToString();
-                config.DaAddress.ServerName = iServerName.ToString();
+                opcConfig.DaAddress.Ip = iIp.ToString();
+                opcConfig.DaAddress.ServerName = iServerName.ToString();
             }
             else if (iOpcProtocol == OpcProtocol.UA)
             {
@@ -115,22 +119,24 @@ namespace OpMonitor
                 var iUserName = txtUserName.Text;
                 var iPassword = txtPassword.Text;
                 var iUseSecurity = cmbUseSecurity.SelectedItem;
-                config.UaAddress.Uri = iUri.ToString();
-                config.UaAddress.UserName = iUserName.ToString();
-                config.UaAddress.Password = iPassword.ToString();
-                config.UaAddress.UseSecurity = (Boolean)iUseSecurity;
+                opcConfig.UaAddress.Uri = iUri.ToString();
+                opcConfig.UaAddress.UserName = iUserName.ToString();
+                opcConfig.UaAddress.Password = iPassword.ToString();
+                opcConfig.UaAddress.UseSecurity = (Boolean)iUseSecurity;
             }
             else
             {
                 MessageBox.Show("请选择UA DA后重试！");
                 return;
             }
-
+            //Tag设置
+            tagConfig.TagsQueueNum = Convert.ToInt32(cmbTagsQueueNum.SelectedItem);
 
             //保存设置       
             try
             {
-                ConfigurationManagerExtend.SectionSave(config, "default", "Address");
+                ConfigurationManagerExtend.SectionSave(opcConfig, "default", "Address");
+                ConfigurationManagerExtend.SectionSave(tagConfig, "default", "Tag");
                 this.DialogResult = DialogResult.OK;
             }
             catch (Exception ee)

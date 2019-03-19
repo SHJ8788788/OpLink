@@ -149,9 +149,10 @@ namespace OpMonitor
                 int index = dataGridTags.Rows.Add();
                 dataGridTags.Rows[dataGridTags.RowCount - 1].Cells["OpcTagName"].Value = (tags[i]).OpcTagName;
                 dataGridTags.Rows[dataGridTags.RowCount - 1].Cells["TagName"].Value = (tags[i]).TagName;
-                dataGridTags.Rows[dataGridTags.RowCount - 1].Cells["DataType"].Value = (tags[i]).DataType;
+                dataGridTags.Rows[dataGridTags.RowCount - 1].Cells["DataType"].Value = (tags[i]).DataTypeName;
                 dataGridTags.Rows[dataGridTags.RowCount - 1].Cells["Value"].Value = (tags[i]).Value;
                 dataGridTags.Rows[dataGridTags.RowCount - 1].Cells["Group"].Value = lblGroup.Text;
+                dataGridTags.Rows[dataGridTags.RowCount - 1].Cells["Block"].Value = lblBlock.Text;
 
                 //dataGridView1.Rows[i].Cells["Qualities"].Value = (tags[i]).Qualities;
                 //dataGridView1.Rows[i].Cells["TimeStamps"].Value = (tags[i]).TimeStamps;

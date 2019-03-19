@@ -140,7 +140,7 @@ get
                     ServerName = this.DaAddress.ServerName
                 },
                 ReconnectEnable = this.ReconnectEnable,
-                ReconnectInterval=this.ReconnectInterval
+                ReconnectInterval = this.ReconnectInterval
             };
         }
     }

@@ -20,7 +20,7 @@ namespace OpcClient.Opc
         /// </summary>
         private bool isExpand;
 
-        public OpcNode(string nodeName, string nodeId, string key, bool isExpand)
+        public OpcNode(string nodeName, string nodeId, string key, bool isExpand=false)
         {
             this.nodeName = nodeName;
             this.nodeId = nodeId;

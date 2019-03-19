@@ -34,12 +34,12 @@ namespace EasySocketService
          var list = this
                .OpcData
                .GetTags(tagNames)
-               .Select(p => new TagSimple { TagName = p.TagName, TagValue = p.Value.ToString(), TagTypeName = p.DataType })
+               .Select(p => new TagSimple { TagName = p.TagName, TagValue = p.Value.ToString(), TagType = p.DataType })
                .ToList();
             return this
                 .OpcData
                 .GetTags(tagNames)
-                .Select(p => new TagSimple { TagName=p.TagName,TagValue=p.Value.ToString(),TagTypeName = p.DataType})
+                .Select(p => new TagSimple { TagName=p.TagName,TagValue=p.Value.ToString(),TagType = p.DataType})
                 .ToList();
         }
 

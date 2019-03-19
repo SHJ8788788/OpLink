@@ -52,13 +52,13 @@ namespace OpcClient
         /// </summary>
         /// <returns></returns>
         void RemoveItem(Tag bi);
-        
+
         /// <summary>
         /// TAG多点取值
         /// </summary>
         /// <param name="tagName">Tag点名集合</param>
         /// <returns></returns>
-        List<Tag> GetTags(List<string> tagNames =null);
+        IEnumerable<Tag> GetTags(List<string> tagNames =null);
         /// <summary>
         /// TAG点取值
         /// </summary>

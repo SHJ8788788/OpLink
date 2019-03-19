@@ -47,7 +47,15 @@ namespace DaOpcClient
             [TypeRemark(typeof(String))]
             CanonDtString = 8,
         }
-
+        /// <summary>
+        /// 获取枚举类型
+        /// </summary>
+        /// <param name="enumSubitem">枚举类子项值</param>        
+        public static Type GetEnumTypeByValue(short enumSubvalue)
+        {
+            var typeName = GetEnumTypeRemarkByValue(enumSubvalue);
+            return Type.GetType(typeName, true, true); ;
+        }
         /// <summary>
         /// 获取枚举类子项描述信息
         /// </summary>

@@ -19,6 +19,10 @@ namespace OpLink.Interface
         /// </summary>
         void Connect();
         /// <summary>
+        /// 断开服务器连接
+        /// </summary>
+        void Disconnect();
+        /// <summary>
         /// 执行时间间隔ms
         /// </summary>
         int RunInterval { get; set; }

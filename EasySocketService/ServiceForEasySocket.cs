@@ -39,6 +39,22 @@ namespace EasySocketService
                 MsgHandle(serviceName+">服务器无法连接");
             }           
         }
+        /// <summary>
+        /// 断开EasySocket服务器
+        /// </summary>
+        public override void DisConnect()
+        {
+            //不在同一线程可使用控件的Invoke方法调用CloseHandle
+            if (EasyTcpClient.Instance.Stop())
+            {
+                MsgHandle(serviceName + ">服务器已断开");
+            }
+            else
+            {
+                MsgHandle(serviceName + ">服务器无法断开");
+            }         
+           
+        }
 
         public ServiceForEasySocket(IOpcClient opcClient,int runInterval) : base(runInterval = 5000)
         {
@@ -58,7 +74,8 @@ namespace EasySocketService
             //重连后执行注册效验
             EasyTcpClient.Instance.ReconnectCompleteHandle =() => { ClientProxy.Verification("opc"); };
             //顷绑定当前程序集
-            EasyTcpClient.Instance.BindService(Assembly.GetExecutingAssembly());         
+            EasyTcpClient.Instance.BindService(Assembly.GetExecutingAssembly());
+            //Log4Ex.LogHelper.Debug("测试--更换后的dll");
         }
 
         public ServiceForEasySocket(IOpcClient opcClient) : base(5000)
@@ -80,7 +97,7 @@ namespace EasySocketService
             EasyTcpClient.Instance.ReconnectCompleteHandle = () => { ClientProxy.Verification("opc"); };
             //顷绑定当前程序集
             EasyTcpClient.Instance.BindService(Assembly.GetExecutingAssembly());
-            PFClientInit();
+            PFClientInit();            
         }
 
         /// <summary>
@@ -109,7 +126,7 @@ namespace EasySocketService
         /// <param name="tag"></param>
         public override void TagChangedExecute(Tag tag)
         {
-            ClientProxy.TagEventChange(new TagSimple { TagName = tag.TagName, TagValue = tag.Value.ToString(), TagTypeName = tag.DataType});
+           ClientProxy.TagEventChange(new TagSimple { TagName = tag.TagName, TagValue = tag.Value.ToString(), TagType = tag.DataType});
         }
 
         /// <summary>
@@ -118,9 +135,9 @@ namespace EasySocketService
         /// <param name="tag"></param>
         private void PFTagChangedExecute(Tag tag)
         {
-            ClientProxy.TagEventChange(new TagSimple { TagName = tag.TagName, TagValue = tag.Value.ToString(), TagTypeName = tag.DataType });
-            Console.WriteLine(string.Format("TagName={0}, Value={1}, DataType={2}", tag.TagName, tag.Value, tag.DataType));
-            Log4Ex.LogHelper.Debug(string.Format("TagName={0}, Value={1}, DataType={2}", tag.TagName, tag.Value, tag.DataType));
+            ClientProxy.TagEventChange(new TagSimple { TagName = tag.TagName, TagValue = tag.Value.ToString(), TagType = tag.DataType });
+            Console.WriteLine(string.Format("TagName={0}, Value={1}, DataType={2}", tag.TagName, tag.Value, tag.DataTypeName));
+            Log4Ex.LogHelper.Debug(string.Format("TagName={0}, Value={1}, DataType={2}", tag.TagName, tag.Value, tag.DataTypeName));
         }
         /// <summary>
         /// 接收消息通知

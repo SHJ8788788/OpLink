@@ -11,8 +11,8 @@ namespace OpcClient
     /// <summary>
     /// tag点历史集合，可通过指定时间获取
     /// </summary>
-    [DebuggerDisplay("Count = {Count}")]
-    [DebuggerTypeProxy(typeof(DebugView))]
+    //[DebuggerDisplay("Count = {Count}")]
+    //[DebuggerTypeProxy(typeof(DebugView))]
     public class TagsQueue : Queue<Tag>
     {
         private int maxNum = 1;        

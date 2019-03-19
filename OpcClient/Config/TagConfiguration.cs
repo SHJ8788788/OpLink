@@ -46,6 +46,21 @@ get
             {
                 base["dataUpdateRate"] = value;
             }
-        }  
+        }
+        /// <summary>
+        /// tag点历史缓存数量
+        /// </summary>
+        [ConfigurationProperty("tagsQueueNum", IsRequired = false, DefaultValue = 100)]
+        public int TagsQueueNum
+        {
+            get
+            {
+                return (int)base["tagsQueueNum"];
+            }
+            set
+            {
+                base["tagsQueueNum"] = value;
+            }
+        }
     }
 }

@@ -74,7 +74,7 @@ namespace UaOpcClient
             if (biList.Count == 0) return this;
             #endregion
             #region 当前标签集合已包含此Tag,则退出
-            if (Tags.Count(p => biList.Select(b => b.TagName).Contains(p.TagName)) != 0)
+            if (Tags.Any(p => biList.Select(b => b.TagName).Contains(p.TagName)))
             {
                 MessageBox.Show("Tag重复：在在重复的Tag点", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return this;
@@ -110,15 +110,15 @@ namespace UaOpcClient
             return tag != null ? tag.TagHistory : null;
         }
 
-        public List<Tag> GetTags(List<string> tagNames=null)
+        public IEnumerable<Tag> GetTags(List<string> tagNames=null)
         {
             if (tagNames==null)
             {
-                return Tags.AsParallel().ToList();
+                return Tags.AsParallel();
             }
             else
             {
-                return Tags.AsParallel().Where(t => tagNames.Contains(t.TagName)).ToList();
+                return Tags.AsParallel().Where(t => tagNames.Contains(t.TagName));
             }            
         }
 

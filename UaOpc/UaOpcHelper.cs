@@ -9,6 +9,7 @@ using OpcClient;
 using OpcClient.Opc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -853,7 +854,7 @@ namespace UaOpcClient
             m_subscription.MaxNotificationsPerPublish = 1000;
             m_subscription.Priority = 100;
             m_subscription.DisplayName = key;
-            
+
             for (int i = 0; i < tags.Length; i++)
             {
                 var item = new MonitoredItem
@@ -868,11 +869,9 @@ namespace UaOpcClient
                     callback?.Invoke( key, monitoredItem, args );
                 };
                 m_subscription.AddItem( item );
-            }            
-
-            m_session.AddSubscription( m_subscription ); 
-            m_subscription.Create( );
-            
+            }
+            m_session.AddSubscription(m_subscription);
+            m_subscription.Create();
             if (dic_subscriptions.ContainsKey( key ))
             {
                 // remove 

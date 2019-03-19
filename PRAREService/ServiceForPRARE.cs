@@ -32,15 +32,7 @@ namespace PRAREService
         {
             this.opcClient = opcClient;
         }
-
-
-        /// <summary>
-        /// 连接服务器
-        /// </summary>
-        public override void Connect()
-        {
-          ///连接操作
-        }
+  
         /// <summary>
         /// 周期执行
         /// </summary>
@@ -85,7 +77,7 @@ namespace PRAREService
                     return;
             }
             //格式转换
-            if (tag.DataType == "Boolean")
+            if (tag.DataTypeName == "Boolean")
             {
                 para_value = Convert.ToInt32(Convert.ToBoolean(tag.Value));
             }

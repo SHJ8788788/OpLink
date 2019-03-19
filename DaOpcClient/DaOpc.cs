@@ -249,7 +249,7 @@ namespace DaOpcClient
             }
             else
             {
-                oPCBrowser.MoveTo(new String[] { nodeId });
+                oPCBrowser.MoveTo(nodeId.Split('.'));
             }
 
             oPCBrowser.ShowBranches();
@@ -294,7 +294,7 @@ namespace DaOpcClient
         {
             string groupName = nodeId;
 
-            if (groupName== "Browsering...")
+            if (groupName == "Browsering...")
             {
                 return new List<OpcNode>();
             }
@@ -311,7 +311,6 @@ namespace DaOpcClient
                     OpcNode child = new OpcNode(turn.ToString().Substring(turn.ToString().LastIndexOf('.') + 1), turn.ToString(), "", false);
                     child.Attribute = new OpcNodeAttribute { NodeClass = "Variable", Name = "", Type = "", Value = "", AccessLevel = "null", Description = "" };
                     leafs.Add(child);
-
                 }
                 oPCBrowser.MoveToRoot();
                 return leafs;
@@ -445,7 +444,7 @@ namespace DaOpcClient
                     else
                     {                     
                         //重连时间间隔
-                        Thread.Sleep(this.Address.ReconnectInterval);
+                        Thread.Sleep(this.Address.ReconnectInterval*1000);
                     }
                 }
                 else

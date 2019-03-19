@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Models;
 using OpcClient;
 using OpcClient.Config;
 using OpLink.Interface;
@@ -51,10 +52,10 @@ namespace OpLink
                 //断开服务通知
                 client.OpcStatusChangeHandle += this.OpcServerDisConnected;
                 ConnectOpc(client);
-                #endregion
-                ServicesInit();
+                #endregion                
                 #region  连接远程服务器
-                //ConnectServer();
+                ServicesInit();
+                ConnectServer();
                 #endregion
             }
             catch (Exception ex)
@@ -212,10 +213,76 @@ namespace OpLink
                 {
                     ITagService tagService = container.ResolveNamed<ITagService>(serviceName);
                     tagService.MsgHandle = AddMsgToList;
-                    tagService.Connect();
+                    //tagService.Connect();
                     tagServices.Add(serviceName, tagService);
                     AddMsgToList(serviceName + " > " + "[Loaded]");
                 }
+            }
+        }
+        /// <summary>
+        /// 重新初始化自定义服务
+        /// </summary>
+        private void ReservicesInit()
+        {
+            //string path = Application.StartupPath;
+            //var dfd = GetServicePathBinding(path);
+            //SetServicePathBinding(path, "Services/ServiceForPRARE;Services/ServiceForEasySocketService");
+            ContainerBuilder builder = new ContainerBuilder();
+            List<string> serviceNames = new List<string>();
+            Type baseType = typeof(IDependency);
+            // 获取所有相关类库的程序集
+            Assembly[] assemblies = GetApiAssemblies();
+            List<NamedParameter> ListNamedParameter = new List<NamedParameter>() { new NamedParameter("opcClient", client) };
+            foreach (Assembly assembly in assemblies)
+            {
+                IEnumerable<Type> types = assembly.GetTypes()
+                    .Where(type => baseType.IsAssignableFrom(type) && !type.IsAbstract);
+                serviceNames.AddRange(types.Select(type => type.Name));
+                foreach (Type type in types)
+                {
+                    builder.RegisterType(type)
+                        .Named<ITagService>(type.Name)
+                        .WithParameters(ListNamedParameter)
+                        .SingleInstance();
+                }
+            }
+
+            //构建容器来完成注册并准备对象解析。
+            Autofac.IContainer container = builder.Build();
+            // 现在您可以使用Autofac解决服务问题。例如，这一行将执行注册到IConfigReader服务的lambda表达式。
+            using (var scope = container.BeginLifetimeScope())
+            {
+                tagServices.Clear();
+                foreach (var serviceName in serviceNames)
+                {
+                    ITagService tagService = container.ResolveNamed<ITagService>(serviceName);
+                    tagService.MsgHandle = AddMsgToList;
+                    //tagService.Connect();
+                    tagServices.Add(serviceName, tagService);
+                    AddMsgToList(serviceName + " > " + "[Loaded]");
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 服务连接
+        /// </summary>
+        private void ConnectServer()
+        {
+            foreach (var tagService in tagServices)
+            {
+                tagService.Value.Connect();                
+            }              
+        }
+        /// <summary>
+        /// 服务断开
+        /// </summary>
+        private void DisConnectServer()
+        {
+            foreach (var tagService in tagServices)
+            {
+                tagService.Value.Disconnect();
             }
         }
         /// <summary>
@@ -349,11 +416,12 @@ namespace OpLink
         private void btnStart_Click(object sender, EventArgs e)
         {
             ConnectOpc(client);
-            //ConnectServer();
+            ConnectServer();
         }
         private void btnStop_Click(object sender, EventArgs e)
         {
             DisconnectOpc(client);
+            DisConnectServer();
         }
         /// <summary>
         /// Tag点变化时通知
@@ -361,18 +429,18 @@ namespace OpLink
         /// <param name="tag"></param>
         private void TagValueChanged(Tag tag)
         {
-            LogHelper.Info($"TagName={tag.TagName},Value={tag.Value},DataType={tag.DataType}");
+            LogHelper.Info($"TagName={tag.TagName},Value={tag.Value},DataType={tag.DataTypeName}");
             foreach (var dic in tagServices)
             {
                 Task.Run(() =>
                 {
                     try
                     {
-                        dic.Value.TagChangedExecute(tag);                        
+                        dic.Value.TagChangedExecute(tag);
                     }
                     catch (Exception ex)
                     {
-                        LogHelper.Error(ex.ToString());
+                        LogHelper.Error(dic.Key+"->"+ex.ToString());
                     }
                 });               
             }
@@ -428,7 +496,6 @@ namespace OpLink
                 Process.Start(path); //filiName 是你要运行的程序名，是物理路径
             }
         }
-
         private void ToolStripMenuItemShow_Click(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Minimized)

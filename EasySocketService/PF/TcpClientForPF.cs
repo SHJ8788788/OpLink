@@ -17,7 +17,7 @@ namespace EasySocketService.PF
 
         public TcpClientForPF()
         {
-            dic.Tags.Add(new Tag { TagName = "HookA", Value = "",DataType="string" });
+            dic.Tags.Add(new Tag { TagName = "HookA", Value = "",DataType=typeof(String) });
             //钩号发生变化通知
             dic.ValueChangedHandle = TagValueChanged;
         }
