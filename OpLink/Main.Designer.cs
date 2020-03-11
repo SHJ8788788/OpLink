@@ -97,7 +97,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(638, 281);
+            this.tabControl1.Size = new System.Drawing.Size(638, 271);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -106,7 +106,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(630, 255);
+            this.tabPage1.Size = new System.Drawing.Size(630, 245);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "日志";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -118,7 +118,7 @@
             this.lbxMsg.ItemHeight = 12;
             this.lbxMsg.Location = new System.Drawing.Point(3, 3);
             this.lbxMsg.Name = "lbxMsg";
-            this.lbxMsg.Size = new System.Drawing.Size(624, 249);
+            this.lbxMsg.Size = new System.Drawing.Size(624, 239);
             this.lbxMsg.TabIndex = 12;
             // 
             // splitContainer1
@@ -136,8 +136,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.statusStrip1);
             this.splitContainer1.Panel2.Controls.Add(this.lblStatus);
-            this.splitContainer1.Size = new System.Drawing.Size(638, 346);
-            this.splitContainer1.SplitterDistance = 281;
+            this.splitContainer1.Size = new System.Drawing.Size(638, 334);
+            this.splitContainer1.SplitterDistance = 271;
             this.splitContainer1.TabIndex = 3;
             // 
             // statusStrip1
@@ -146,7 +146,7 @@
             this.tsslServerState,
             this.tsslversion,
             this.tsslServerStartTime});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 39);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 37);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(638, 22);
             this.statusStrip1.TabIndex = 131;
@@ -236,7 +236,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(638, 413);
+            this.ClientSize = new System.Drawing.Size(638, 401);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

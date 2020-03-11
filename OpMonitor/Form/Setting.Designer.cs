@@ -74,6 +74,7 @@
             this.tsslversion = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslServerStartTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.toolTagsNameCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuBlock.SuspendLayout();
             this.contextMenuGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTags)).BeginInit();
@@ -97,6 +98,7 @@
             this.treeTags.Name = "treeTags";
             this.treeTags.Size = new System.Drawing.Size(205, 687);
             this.treeTags.TabIndex = 0;
+            this.treeTags.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeTags_DrawNode);
             this.treeTags.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeTags_MouseDoubleClick);
             this.treeTags.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeTags_MouseDown);
             // 
@@ -278,28 +280,29 @@
             this.contextMenuTags.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolTagOAdd,
             this.toolTagDel,
-            this.toolTagsRefresh});
+            this.toolTagsRefresh,
+            this.toolTagsNameCopy});
             this.contextMenuTags.Name = "contextMenuGroup";
-            this.contextMenuTags.Size = new System.Drawing.Size(123, 70);
+            this.contextMenuTags.Size = new System.Drawing.Size(181, 114);
             // 
             // toolTagOAdd
             // 
             this.toolTagOAdd.Name = "toolTagOAdd";
-            this.toolTagOAdd.Size = new System.Drawing.Size(122, 22);
+            this.toolTagOAdd.Size = new System.Drawing.Size(180, 22);
             this.toolTagOAdd.Text = "Tag新增";
             this.toolTagOAdd.Click += new System.EventHandler(this.toolTagAdd_Click);
             // 
             // toolTagDel
             // 
             this.toolTagDel.Name = "toolTagDel";
-            this.toolTagDel.Size = new System.Drawing.Size(122, 22);
+            this.toolTagDel.Size = new System.Drawing.Size(180, 22);
             this.toolTagDel.Text = "删除";
             this.toolTagDel.Click += new System.EventHandler(this.toolTagDel_Click);
             // 
             // toolTagsRefresh
             // 
             this.toolTagsRefresh.Name = "toolTagsRefresh";
-            this.toolTagsRefresh.Size = new System.Drawing.Size(122, 22);
+            this.toolTagsRefresh.Size = new System.Drawing.Size(180, 22);
             this.toolTagsRefresh.Text = "刷新";
             this.toolTagsRefresh.Click += new System.EventHandler(this.toolTagsRefresh_Click);
             // 
@@ -307,7 +310,7 @@
             // 
             this.lblGroup.AutoSize = true;
             this.lblGroup.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblGroup.Location = new System.Drawing.Point(64, 14);
+            this.lblGroup.Location = new System.Drawing.Point(79, 13);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(0, 14);
             this.lblGroup.TabIndex = 122;
@@ -316,7 +319,7 @@
             // 
             this.lblBlock.AutoSize = true;
             this.lblBlock.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblBlock.Location = new System.Drawing.Point(64, 36);
+            this.lblBlock.Location = new System.Drawing.Point(79, 36);
             this.lblBlock.Name = "lblBlock";
             this.lblBlock.Size = new System.Drawing.Size(0, 14);
             this.lblBlock.TabIndex = 123;
@@ -327,9 +330,9 @@
             this.label2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(16, 36);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 14);
+            this.label2.Size = new System.Drawing.Size(63, 14);
             this.label2.TabIndex = 120;
-            this.label2.Text = "Block:";
+            this.label2.Text = "Block->>";
             // 
             // label1
             // 
@@ -337,15 +340,15 @@
             this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(16, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 14);
+            this.label1.Size = new System.Drawing.Size(63, 14);
             this.label1.TabIndex = 121;
-            this.label1.Text = "Group:";
+            this.label1.Text = "Group->>";
             // 
             // chkRefresh
             // 
             this.chkRefresh.AutoSize = true;
             this.chkRefresh.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.chkRefresh.Location = new System.Drawing.Point(343, 22);
+            this.chkRefresh.Location = new System.Drawing.Point(344, 30);
             this.chkRefresh.Name = "chkRefresh";
             this.chkRefresh.Size = new System.Drawing.Size(82, 18);
             this.chkRefresh.TabIndex = 124;
@@ -506,6 +509,13 @@
             this.splitContainer1.SplitterDistance = 83;
             this.splitContainer1.TabIndex = 131;
             // 
+            // toolTagsNameCopy
+            // 
+            this.toolTagsNameCopy.Name = "toolTagsNameCopy";
+            this.toolTagsNameCopy.Size = new System.Drawing.Size(180, 22);
+            this.toolTagsNameCopy.Text = "复制名称";
+            this.toolTagsNameCopy.Click += new System.EventHandler(this.toolTagsNameCopy_Click);
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -585,5 +595,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Group;
         private System.Windows.Forms.DataGridViewTextBoxColumn Message;
         private System.Windows.Forms.ToolStripMenuItem toolBlockNameEdit;
+        private System.Windows.Forms.ToolStripMenuItem toolTagsNameCopy;
     }
 }

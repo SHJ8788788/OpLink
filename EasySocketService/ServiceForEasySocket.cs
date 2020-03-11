@@ -29,10 +29,12 @@ namespace EasySocketService
         public override void Connect()
         {
             //不在同一线程可使用控件的Invoke方法调用CloseHandle
-            if (EasyTcpClient.Instance.Connect("127.0.0.1", 5555))
+            if (EasyTcpClient.Instance.Connect("172.16.6.30", 5555))
+            //if (EasyTcpClient.Instance.Connect("172.22.197.45", 5555))
             {
                 //执行注册效验
                 var result = ClientProxy.Verification("opc");
+                MsgHandle(serviceName + $">EasySocket>{EasyTcpClient.Instance.Ip}已连接");
             }
             else
             {
@@ -56,7 +58,7 @@ namespace EasySocketService
            
         }
 
-        public ServiceForEasySocket(IOpcClient opcClient,int runInterval) : base(runInterval = 5000)
+        public ServiceForEasySocket(IOpcClient opcClient,int runInterval) : base(runInterval = 3600000)
         {
             this.opcClient = opcClient;
             EasyTcpClient.Instance.Extra.Tag.Set("opc", opcClient);
@@ -115,9 +117,19 @@ namespace EasySocketService
         /// </summary>
         public override void InvokeService()
         {
-            opcClient["GroupData"]
-              .GetTags()
-              .ToList();
+            //opcClient["GroupData"]
+            //  .GetTags()
+            //  .ToList();
+            var serverTime =ClientProxy.TimeSync().Result;
+            if(SysTimeSetting.SetLocalTimeByStr(serverTime.ToString("yyyyMMddHHmmss")))
+            {
+                Log4Ex.LogHelper.Debug(string.Format("周期获取服务器时间={0}, 执行成功", serverTime.ToString("yyyyMMddHHmmss")));
+            }
+            else
+            {
+                Log4Ex.LogHelper.Debug(string.Format("周期获取服务器时间={0}, 执行失败,尝试用管理员启动程序", serverTime.ToString("yyyyMMddHHmmss")));
+            }          
+
         }
 
         /// <summary>

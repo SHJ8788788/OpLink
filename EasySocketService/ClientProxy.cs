@@ -71,6 +71,15 @@ namespace EasySocketService
         {          
             return Instance.InvokeApi<bool>("Verification",msg);
         }
+
+        /// <summary>
+        /// 时间同步-获取服务器时间
+        /// </summary>
+        /// <returns></returns>
+        public static Task<DateTime> TimeSync()
+        {
+            return Instance.InvokeApi<DateTime>("TimeSync");
+        }
         /// <summary>
         /// Tag信号发生变化
         /// </summary>

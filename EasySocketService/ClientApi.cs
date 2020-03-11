@@ -21,21 +21,37 @@ namespace EasySocketService
     {
         [Api]
         public string GetTagValue(string tagName)
-        {
+        {        
             return this
                 .OpcData
                 .GetTagValue(tagName)
                 .Value.ToString();
         }
+
+        [Api]
+        public string GetTriggerValue(string tagName)
+        {
+            return this
+                .OpcTrigger
+                .GetTagValue(tagName)
+                .Value.ToString();
+        }
+
+        
+        [Api]
+        public List<TagSimple> GetTriggers(List<string> tagNames)
+        {
+            return this
+                .OpcTrigger
+                .GetTags(tagNames)
+                .Select(p => new TagSimple { TagName = p.TagName, TagValue = p.Value.ToString(), TagType = p.DataType })
+                .ToList();
+        }
+
+
         [Api]
         public List<TagSimple> GetTags(List<string> tagNames)
-        {
-
-         var list = this
-               .OpcData
-               .GetTags(tagNames)
-               .Select(p => new TagSimple { TagName = p.TagName, TagValue = p.Value.ToString(), TagType = p.DataType })
-               .ToList();
+        {       
             return this
                 .OpcData
                 .GetTags(tagNames)
@@ -55,6 +71,11 @@ namespace EasySocketService
         private IGroup OpcData
         {
             get { return EasyTcpClient.Instance.Extra.Tag.Get("opc").As<IOpcClient>()["GroupData"]; }
+        }
+
+        private IGroup OpcTrigger
+        {
+            get { return EasyTcpClient.Instance.Extra.Tag.Get("opc").As<IOpcClient>()["GroupTrigger"]; }
         }
     }
 }

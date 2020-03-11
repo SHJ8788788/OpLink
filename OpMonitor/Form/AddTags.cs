@@ -89,6 +89,7 @@ namespace OpMonitor
         //显示items
         private void treeViewBranches_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            chkAll.Checked = false;
             if (e.Node == null || e.Node.Tag == null)
             {
                 return;

@@ -870,6 +870,7 @@ namespace UaOpcClient
                 };
                 m_subscription.AddItem( item );
             }
+            
             m_session.AddSubscription(m_subscription);
             m_subscription.Create();
             if (dic_subscriptions.ContainsKey( key ))

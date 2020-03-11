@@ -24,6 +24,10 @@ namespace OpMonitor
         private string blockName = "";
         private OpcAddressConfiguration opcConfig;
         private ImageList imageList = new ImageList();
+        /// <summary>
+        /// Tag表有元素发生变化标识，以此判断是否需要重新初始化Tags列表
+        /// </summary>
+        private bool isdDtaGridTagsChanged = false;
 
         public Setting()
         {
@@ -32,6 +36,10 @@ namespace OpMonitor
             imageList.Images.Add("Enum_582", Properties.Resources.Enum_582);
             treeTags.ImageList = imageList;
             this.dataGridTags.DoubleBufferedDataGirdView(true);
+            //解决树节点锁定后节点渲染的问题
+            treeTags.HideSelection = false;
+            treeTags.DrawMode = TreeViewDrawMode.OwnerDrawText;
+            treeTags.DrawNode += new DrawTreeNodeEventHandler(treeTags_DrawNode);
         }
 
         private void Setting_Load(object sender, EventArgs e)
@@ -211,7 +219,7 @@ namespace OpMonitor
                 client[groupName].RemoveItemsAll();
                 //opc中重新加入tag
                 client[groupName].AddItems(listIn);
-                client.RefreshGroupByGroupName(groupName);
+
                 //if (!client[groupName].GetTags().Any())
                 //{
                 //    client[groupName].AddItems(listIn);
@@ -381,7 +389,8 @@ namespace OpMonitor
                         blockName = treeNode.Text.ToString();
 
                         QueryTags(groupName, blockName);//在gridview中加载需要监视的tag点
-                        IniTagsRecord(groupName);//OPC初始化监视的tag点
+                        isdDtaGridTagsChanged = true;
+                        //IniTagsRecord(groupName);//OPC初始化监视的tag点
 
                         lblGroup.Text = groupName;
                         lblBlock.Text = blockName;
@@ -461,8 +470,8 @@ namespace OpMonitor
                 List<Tag> tags = TagConfig.QueryTagsByBlockName<Tag>(groupName, blockName);
 
                 List<GridTag> list = tags.Select(p => new GridTag { TagName = p.TagName, OpcTagName = p.OpcTagName, TimeStamps = p.TimeStamps, Qualities = p.Qualities, Value = p.Value, Message = p.Message }).ToList();
-                dataGridTags.DataSource = new BindingList<GridTag>(list);                
-                IniTagsRecord(groupName);//OPC初始化监视的tag点
+                dataGridTags.DataSource = new BindingList<GridTag>(list);
+                isdDtaGridTagsChanged = true;
             }
         }
         //删除block
@@ -493,17 +502,7 @@ namespace OpMonitor
         }
         //删除tag
         private void toolTagDel_Click(object sender, EventArgs e)
-        {
-            //foreach (DataGridViewRow row in dataGridTags.SelectedRows)
-            //{
-            //    string tagName = dataGridTags.Rows[dataGridTags.CurrentRow.Index].Cells["TagName"].Value.ToString();
-            //    Tag tag = new Tag() { TagName = tagName };
-            //    if (TagConfig.DelTag(groupName, blockName, tag))
-            //    {
-            //        dataGridTags.Rows.RemoveAt(dataGridTags.CurrentRow.Index);
-            //    }
-            //}
-
+        {         
             BindingList<GridTag> list = (BindingList < GridTag > )dataGridTags.DataSource;           
             foreach (DataGridViewRow row in dataGridTags.SelectedRows)
             {
@@ -514,9 +513,7 @@ namespace OpMonitor
                     list.RemoveAt(row.Index);
                 }
             }
-            //dataGridTags.DataSource = list;
-
-            IniTagsRecord(groupName);//OPC初始化监视的tag点
+            isdDtaGridTagsChanged = true;
         }
         //treeview刷新
         private void toolGroupsRefresh_Click(object sender, EventArgs e)
@@ -565,9 +562,22 @@ namespace OpMonitor
         {
             QueryTags(groupName, blockName);
         }
+        private void toolTagsNameCopy_Click(object sender, EventArgs e)
+        {
+            if (dataGridTags.SelectedRows.Count==1)
+            {
+                Clipboard.SetDataObject(dataGridTags.SelectedRows[0].Cells["TagName"].Value.ToString());
+            }            
+        }
         //gridview刷新
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            //发生变化则重新初始化Tags
+            if (isdDtaGridTagsChanged)
+            {
+                IniTagsRecord(groupName);
+                isdDtaGridTagsChanged = false;
+            }
             if (client != null)
             {
                 QueryTagsRecord(groupName);
@@ -624,19 +634,26 @@ namespace OpMonitor
         {
             if (chkRefresh.Checked == false)
             {
+                chkRefresh.ForeColor = Color.Black;
                 timerRefresh.Stop();
                 treeTags.Enabled = true;
                 dataGridTags.Enabled = true;
                 groupBoxWatch.Enabled = false;
+                isdDtaGridTagsChanged = false;
             }
             else if (chkRefresh.Checked == true)
             {
+                chkRefresh.ForeColor = Color.Green;
                 treeTags.Enabled = false;
                 dataGridTags.Enabled = false;
                 groupBoxWatch.Enabled = true;
                 timerRefresh.Interval = Convert.ToInt32(cmbInterval.Text);
                 timerRefresh.Start();
-                IniTagsRecord(groupName);
+                //发生变化则重新初始化Tags
+                if (isdDtaGridTagsChanged)
+                {
+                    IniTagsRecord(groupName);
+                }                
             }
         }
         //刷新数据
@@ -661,7 +678,13 @@ namespace OpMonitor
         {
             iniSetting();
         }
-        #endregion       
+        #endregion
+
+        //树节点渲染
+        private void treeTags_DrawNode(object sender, DrawTreeNodeEventArgs e)
+        {
+            e.DrawDefault = true;
+        }
     }
 }
 /// <summary>

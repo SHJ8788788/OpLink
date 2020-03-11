@@ -101,7 +101,7 @@
             this.tsslTagsNum});
             this.statusStrip1.Location = new System.Drawing.Point(0, 707);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1030, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1112, 22);
             this.statusStrip1.TabIndex = 121;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -124,7 +124,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 666);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1030, 41);
+            this.panel1.Size = new System.Drawing.Size(1112, 41);
             this.panel1.TabIndex = 122;
             // 
             // btnCheckRepeat
@@ -185,7 +185,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer3.Size = new System.Drawing.Size(1030, 666);
+            this.splitContainer3.Size = new System.Drawing.Size(1112, 666);
             this.splitContainer3.SplitterDistance = 417;
             this.splitContainer3.TabIndex = 118;
             // 
@@ -195,7 +195,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1030, 417);
+            this.groupBox1.Size = new System.Drawing.Size(1112, 417);
             this.groupBox1.TabIndex = 120;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "OPC Nodes";
@@ -213,8 +213,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1024, 397);
-            this.splitContainer1.SplitterDistance = 240;
+            this.splitContainer1.Size = new System.Drawing.Size(1106, 397);
+            this.splitContainer1.SplitterDistance = 206;
             this.splitContainer1.TabIndex = 0;
             // 
             // treeViewBranches
@@ -222,7 +222,7 @@
             this.treeViewBranches.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewBranches.Location = new System.Drawing.Point(0, 0);
             this.treeViewBranches.Name = "treeViewBranches";
-            this.treeViewBranches.Size = new System.Drawing.Size(240, 397);
+            this.treeViewBranches.Size = new System.Drawing.Size(206, 397);
             this.treeViewBranches.TabIndex = 1;
             this.treeViewBranches.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeViewBranches_BeforeExpand);
             this.treeViewBranches.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeViewBranches_AfterExpand);
@@ -243,8 +243,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer2.Panel2.Controls.Add(this.btnAddTags);
             this.splitContainer2.Panel2.Controls.Add(this.chkAll);
-            this.splitContainer2.Size = new System.Drawing.Size(780, 397);
-            this.splitContainer2.SplitterDistance = 619;
+            this.splitContainer2.Size = new System.Drawing.Size(896, 397);
+            this.splitContainer2.SplitterDistance = 710;
             this.splitContainer2.TabIndex = 2;
             // 
             // dataGridViewItems
@@ -271,7 +271,7 @@
             this.dataGridViewItems.RowHeadersVisible = false;
             this.dataGridViewItems.RowTemplate.Height = 23;
             this.dataGridViewItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewItems.Size = new System.Drawing.Size(619, 397);
+            this.dataGridViewItems.Size = new System.Drawing.Size(710, 397);
             this.dataGridViewItems.TabIndex = 118;
             // 
             // checkBox
@@ -334,7 +334,7 @@
             this.groupBox3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox3.Location = new System.Drawing.Point(0, 99);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(157, 298);
+            this.groupBox3.Size = new System.Drawing.Size(182, 298);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "当前位置";
@@ -343,17 +343,17 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(17, 28);
+            this.label1.Location = new System.Drawing.Point(14, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 14);
+            this.label1.Size = new System.Drawing.Size(63, 14);
             this.label1.TabIndex = 2;
-            this.label1.Text = "分组:";
+            this.label1.Text = "Group->>";
             // 
             // lblGroup
             // 
             this.lblGroup.AutoSize = true;
             this.lblGroup.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblGroup.Location = new System.Drawing.Point(17, 46);
+            this.lblGroup.Location = new System.Drawing.Point(79, 33);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(63, 14);
             this.lblGroup.TabIndex = 2;
@@ -363,17 +363,17 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(17, 72);
+            this.label2.Location = new System.Drawing.Point(14, 63);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 14);
+            this.label2.Size = new System.Drawing.Size(63, 14);
             this.label2.TabIndex = 2;
-            this.label2.Text = "数据块:";
+            this.label2.Text = "Block->>";
             // 
             // lblBlock
             // 
             this.lblBlock.AutoSize = true;
             this.lblBlock.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblBlock.Location = new System.Drawing.Point(17, 89);
+            this.lblBlock.Location = new System.Drawing.Point(79, 63);
             this.lblBlock.Name = "lblBlock";
             this.lblBlock.Size = new System.Drawing.Size(63, 14);
             this.lblBlock.TabIndex = 2;
@@ -397,7 +397,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1030, 245);
+            this.groupBox2.Size = new System.Drawing.Size(1112, 245);
             this.groupBox2.TabIndex = 121;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tag新增";
@@ -444,7 +444,7 @@
             this.dataGridTags.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridTags.RowTemplate.Height = 23;
             this.dataGridTags.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridTags.Size = new System.Drawing.Size(1024, 225);
+            this.dataGridTags.Size = new System.Drawing.Size(1106, 225);
             this.dataGridTags.TabIndex = 117;
             this.dataGridTags.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridTags_CellMouseUp);
             // 
@@ -497,7 +497,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1030, 729);
+            this.ClientSize = new System.Drawing.Size(1112, 729);
             this.Controls.Add(this.splitContainer3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);

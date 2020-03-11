@@ -24,6 +24,7 @@ namespace OpLink
         private int groupDataUpdateRate;
         private bool reconnectEnable;
         private int reConnectInterval;
+        private int tagsQueueNum;
         private Dictionary<string,ITagService> tagServices= new Dictionary<string,ITagService>();
 
         //消息最大显示条数
@@ -43,8 +44,9 @@ namespace OpLink
                 var tagConfig = ConfigurationManagerExtend.SectionsCast<TagConfiguration>("Tag").FirstOrDefault().Value;
                 groupTriggerUpdateRate = tagConfig.TriggerUpdateRate;
                 groupDataUpdateRate = tagConfig.DataUpdateRate;
+                tagsQueueNum = tagConfig.TagsQueueNum;
                 reconnectEnable = opcConfig.ReconnectEnable;
-                reConnectInterval = opcConfig.ReconnectInterval;
+                reConnectInterval = opcConfig.ReconnectInterval;                
                 #endregion
                 #region OpcClient初始化
                 client = OpcFinder(opcConfig.OpcTypeName);
@@ -85,7 +87,7 @@ namespace OpLink
                 client.CreateGroup("GroupData")
                     .SetUpdateRate(groupDataUpdateRate)
                     .AddItems(TagConfig.QueryTagsByGroupName<Tag>("GroupData"))
-                    .AddQueue(100);                   
+                    .AddQueue(tagsQueueNum);                   
                 OpcServerRefreshUI(client);
                 return true;
             }

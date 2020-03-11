@@ -173,7 +173,7 @@ namespace UaOpcClient
 
         public void RemoveItemsAll()
         {
-            Tags.Clear();//监控集合删除所有位置的标签            
+            Tags.Clear();//监控集合删除所有位置的标签
         }
 
         /// <summary>

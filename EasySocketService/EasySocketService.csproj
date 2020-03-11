@@ -60,6 +60,7 @@
     <Compile Include="PF\TcpClientForPF.cs" />
     <Compile Include="ServiceForEasySocket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysTimeSetting.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EasySocket.vs13\EasySocket.vs13\EasySocket.vs13.csproj">

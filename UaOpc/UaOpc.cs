@@ -442,8 +442,7 @@ namespace UaOpcClient
                     //    nodeIds.Add((NodeId)target.NodeId);
                     //} 
 
-                    string key = GetImageKeyFromDescription(target, sourceId);
-                    OpcNode child = new OpcNode(Utils.Format("{0}", target), target.NodeId.ToString(), key);
+                    OpcNode child = new OpcNode(Utils.Format("{0}", target), target.NodeId.ToString());
                     child.Attribute = ReadOneNodeFiveAttribute(target.NodeId.ToString());
                     if (child.Attribute != null)
                     {
@@ -511,7 +510,7 @@ namespace UaOpcClient
         /// <param name="nodeIds"></param>
         /// <returns></returns>
         private OpcNodeAttribute ReadOneNodeFiveAttribute(NodeId nodeId)
-        {
+        {          
             ReadValueIdCollection nodesToRead = new ReadValueIdCollection();
 
                 NodeId sourceId = nodeId;
@@ -539,8 +538,7 @@ namespace UaOpcClient
                 {
                     NodeId = sourceId,
                     AttributeId = Attributes.Description
-                });
-            
+                });       
             // read all values.
             base.Session.Read(
                 null,
@@ -548,7 +546,7 @@ namespace UaOpcClient
                 TimestampsToReturn.Neither,
                 nodesToRead,
                 out DataValueCollection results,
-                out DiagnosticInfoCollection diagnosticInfos);
+                out DiagnosticInfoCollection diagnosticInfos);      
             try
             {
                 ClientBase.ValidateDiagnosticInfos(diagnosticInfos, nodesToRead);
@@ -609,6 +607,8 @@ namespace UaOpcClient
                 value = "";
                 type = nodeclass.ToString();
             }
+                         
+
             if (dataValues[4].WrappedValue.Value!=null)
             {
                 description = dataValues[4].WrappedValue.Value.ToString();
@@ -740,11 +740,12 @@ namespace UaOpcClient
             ConnectCompleteHandle?.Invoke(this);
         }
         /// <summary>
-        /// TAG新增事件
+        /// TAG新增事件,先清空再新增
         /// </summary>
         /// <param name="group"></param>
         private void M_AddItemsComplete(IGroup group)
         {
+            base.RemoveSubscription(group.GroupName);
             base.AddSubscription(group.GroupName, group.GetTags().Select(p => p.OpcTagName).ToArray(), SubCallBack);
         }
 
