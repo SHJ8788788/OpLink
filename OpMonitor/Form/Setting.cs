@@ -43,7 +43,7 @@ namespace OpMonitor
         }
 
         private void Setting_Load(object sender, EventArgs e)
-        {
+        {           
             //读取基础配置文件
             ConfigInit();
             //增加CLR搜索的路径
@@ -391,12 +391,23 @@ namespace OpMonitor
                         QueryTags(groupName, blockName);//在gridview中加载需要监视的tag点
                         isdDtaGridTagsChanged = true;
                         //IniTagsRecord(groupName);//OPC初始化监视的tag点
-
+                        
                         lblGroup.Text = groupName;
                         lblBlock.Text = blockName;
                     }
                     //使treeTags的SelectedNode为当前新建的节点，也就是右键后的节点被选中  
                     treeTags.SelectedNode = treeNode;
+
+                    //发生变化则重新初始化Tags
+                    if (isdDtaGridTagsChanged)
+                    {
+                        IniTagsRecord(groupName);
+                        isdDtaGridTagsChanged = false;
+                    }
+                    if (client != null)
+                    {
+                        QueryTagsRecord(groupName);
+                    }
                 }
             }
         }
@@ -569,6 +580,74 @@ namespace OpMonitor
                 Clipboard.SetDataObject(dataGridTags.SelectedRows[0].Cells["TagName"].Value.ToString());
             }            
         }
+        /// <summary>
+        /// 值模拟写入
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolTagWriteValue_Click(object sender, EventArgs e)
+        {
+            //当选择唯一时，获取tag点
+            if (dataGridTags.SelectedRows.Count!= 1)
+            {
+                return;              
+            }
+            //opc重新绑定
+            string tagName = dataGridTags.SelectedRows[0].Cells["TagName"].Value.ToString();  //将需要重载的点压入集合
+            Tag  tag = ((BindingList<GridTag>)dataGridTags.DataSource).Where(k=>k.TagName== tagName).
+                Select(p => new Tag { OpcTagName = p.OpcTagName, TagName = p.TagName, TimeStamps = DateTime.Now, Value = "", Qualities = "", Message = "" }).First();
+
+            ////删除分组下所有tag
+            //client[groupName].RemoveItemsAll();
+            ////opc中重新加入tag
+            //client[groupName].AddItem(tag);
+            //QueryTagsRecord(groupName);
+
+            //绑定完成后获取tag点
+            string grouName = lblGroup.Text;
+            Tag bi = client[grouName].GetTag(tagName);
+
+            //定义块新增控制的委托
+            Func<Tag, bool> writeValue = (tagNew) =>
+            {
+                try
+                { 
+                    client["GroupData"].SetTagValue(tagNew);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+
+                    return false;
+                }
+              
+            };
+            WriteValue ab = new WriteValue(writeValue, bi);
+            if (ab.ShowDialog() == DialogResult.OK)
+            {
+                //模拟成功则刷新数据
+                QueryTagsRecord(groupName);
+            }
+
+
+
+
+          
+        }
+
+        /// <summary>
+        /// 复制当前数值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolTagCopyValue_Click(object sender, EventArgs e)
+        {
+            if (dataGridTags.SelectedRows.Count == 1)
+            {
+                Clipboard.SetDataObject(dataGridTags.SelectedRows[0].Cells["Value"].Value.ToString());
+            }
+        }
+
         //gridview刷新
         private void btnRefresh_Click(object sender, EventArgs e)
         {

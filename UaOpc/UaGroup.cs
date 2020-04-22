@@ -122,6 +122,18 @@ namespace UaOpcClient
             }            
         }
 
+        public Tag GetTag(string tagName = null)
+        {
+            if (tagName == null)
+            {
+                return null;
+            }
+            else
+            {
+                return Tags.AsParallel().Where(t => t.TagName == tagName).First();
+            }
+        }
+
         public Tag GetTagValue(string tagName)
         {
             return Tags.AsParallel().Where(t => t.TagName == tagName).FirstOrDefault();
@@ -137,6 +149,19 @@ namespace UaOpcClient
             return Tags.Where(t => biList
                  .Select(b => b.TagName)
                  .Contains(t.TagName)).ToList();
+        }
+
+        public void SetTagValue(Tag bi)
+        {
+            var value = Convert.ChangeType(bi.Value, bi.DataType);
+            this.uaOpc.WriteNode(bi.OpcTagName, value);
+         
+            //Double d = 13.1F;
+            //var value = Convert.ChangeType(bi.Value, bi.DataType);
+            //this.uaOpc.WriteNode<System.Double>(bi.OpcTagName, d);
+
+            //var dd = System.Text.Encoding.Default.GetBytes("323112");
+            //this.uaOpc.WriteNode<byte[]>(bi.OpcTagName, dd);
         }
 
         public void RemoveItem(Tag bi)

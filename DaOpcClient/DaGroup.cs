@@ -332,6 +332,18 @@ namespace DaOpcClient
                 return Tags.Where(t => tagNames.Contains(t.TagName));
             }            
         }
+        public Tag GetTag(string tagName = null)
+        {
+            if (tagName == null)
+            {
+                return null;
+            }
+            else
+            {
+                return Tags.Where(t => t.TagName==tagName).First();
+            }
+        }
+
         public Tag GetTagValue(string tagName)
         {
             return Tags.Where(t => t.TagName == tagName).FirstOrDefault();
@@ -357,6 +369,20 @@ namespace DaOpcClient
             Tag tag = Tags.Where(t => t.TagName == tagName).FirstOrDefault();
             return tag != null ? tag.TagHistory : null;
 
+        }
+
+        public void SetTagValue(Tag bi)
+        {
+            int ServerHandle = bi.ExtraAs<DaExtra>().ItmHandleServer;
+            //S7:[S7 connection_1]DB53,CHAR30
+            int[] temp = new int[2] { 0, ServerHandle };
+            Array serverHandles = (Array)temp;
+            object[] valueTemp = new object[2] { "", bi.Value };
+            Array values = (Array)valueTemp;
+            Array Errors;
+            int cancelID;
+            OPCGroup.AsyncWrite(1, ref serverHandles, ref values, out Errors, 2009, out cancelID);
+            //KepItem.Write(txtWriteTagValue.Text);//这句也可以写入，但并不触发写入事件
         }
         #endregion
         #region DataChange

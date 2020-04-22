@@ -55,6 +55,8 @@
             this.toolTagOAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTagDel = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTagsRefresh = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTagsNameCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTagWriteValue = new System.Windows.Forms.ToolStripMenuItem();
             this.lblGroup = new System.Windows.Forms.Label();
             this.lblBlock = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -74,7 +76,7 @@
             this.tsslversion = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslServerStartTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.toolTagsNameCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTagCopyValue = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuBlock.SuspendLayout();
             this.contextMenuGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTags)).BeginInit();
@@ -281,9 +283,11 @@
             this.toolTagOAdd,
             this.toolTagDel,
             this.toolTagsRefresh,
-            this.toolTagsNameCopy});
+            this.toolTagsNameCopy,
+            this.toolTagWriteValue,
+            this.toolTagCopyValue});
             this.contextMenuTags.Name = "contextMenuGroup";
-            this.contextMenuTags.Size = new System.Drawing.Size(181, 114);
+            this.contextMenuTags.Size = new System.Drawing.Size(181, 158);
             // 
             // toolTagOAdd
             // 
@@ -305,6 +309,20 @@
             this.toolTagsRefresh.Size = new System.Drawing.Size(180, 22);
             this.toolTagsRefresh.Text = "刷新";
             this.toolTagsRefresh.Click += new System.EventHandler(this.toolTagsRefresh_Click);
+            // 
+            // toolTagsNameCopy
+            // 
+            this.toolTagsNameCopy.Name = "toolTagsNameCopy";
+            this.toolTagsNameCopy.Size = new System.Drawing.Size(180, 22);
+            this.toolTagsNameCopy.Text = "复制名称";
+            this.toolTagsNameCopy.Click += new System.EventHandler(this.toolTagsNameCopy_Click);
+            // 
+            // toolTagWriteValue
+            // 
+            this.toolTagWriteValue.Name = "toolTagWriteValue";
+            this.toolTagWriteValue.Size = new System.Drawing.Size(180, 22);
+            this.toolTagWriteValue.Text = "模拟值";
+            this.toolTagWriteValue.Click += new System.EventHandler(this.toolTagWriteValue_Click);
             // 
             // lblGroup
             // 
@@ -509,12 +527,12 @@
             this.splitContainer1.SplitterDistance = 83;
             this.splitContainer1.TabIndex = 131;
             // 
-            // toolTagsNameCopy
+            // toolTagCopyValue
             // 
-            this.toolTagsNameCopy.Name = "toolTagsNameCopy";
-            this.toolTagsNameCopy.Size = new System.Drawing.Size(180, 22);
-            this.toolTagsNameCopy.Text = "复制名称";
-            this.toolTagsNameCopy.Click += new System.EventHandler(this.toolTagsNameCopy_Click);
+            this.toolTagCopyValue.Name = "toolTagCopyValue";
+            this.toolTagCopyValue.Size = new System.Drawing.Size(180, 22);
+            this.toolTagCopyValue.Text = "复制值";
+            this.toolTagCopyValue.Click += new System.EventHandler(this.toolTagCopyValue_Click);
             // 
             // Setting
             // 
@@ -596,5 +614,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Message;
         private System.Windows.Forms.ToolStripMenuItem toolBlockNameEdit;
         private System.Windows.Forms.ToolStripMenuItem toolTagsNameCopy;
+        private System.Windows.Forms.ToolStripMenuItem toolTagWriteValue;
+        private System.Windows.Forms.ToolStripMenuItem toolTagCopyValue;
     }
 }

@@ -83,6 +83,12 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="DoubleBufferView.cs" />
+    <Compile Include="Form\WriteValue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\WriteValue.Designer.cs">
+      <DependentUpon>WriteValue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\ControlBlock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
       <Link>Properties\Resources.resx</Link>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\WriteValue.resx">
+      <DependentUpon>WriteValue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\ControlBlock.resx">
       <DependentUpon>ControlBlock.cs</DependentUpon>

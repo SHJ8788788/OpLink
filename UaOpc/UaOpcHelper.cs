@@ -598,21 +598,24 @@ namespace UaOpcClient
         /// <returns>if success True,otherwise False</returns>
         public bool WriteNode<T>( string tag, T value )
         {
+
+
             WriteValue valueToWrite = new WriteValue( )
             {
                 NodeId = new NodeId( tag ),
                 AttributeId = Attributes.Value
             };
-            valueToWrite.Value.Value = value;
+            valueToWrite.Value.Value = value; 
             valueToWrite.Value.StatusCode = StatusCodes.Good;
             valueToWrite.Value.ServerTimestamp = DateTime.MinValue;
-            valueToWrite.Value.SourceTimestamp = DateTime.MinValue;
+            valueToWrite.Value.SourceTimestamp = DateTime.MinValue;        
+
 
             WriteValueCollection valuesToWrite = new WriteValueCollection
             {
                 valueToWrite
-            };
-
+            };          
+            
             // 写入当前的值
 
             m_session.Write(

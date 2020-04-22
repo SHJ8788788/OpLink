@@ -565,5 +565,12 @@ namespace OpLink
             }
         }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Tag bi = client["GroupData"].GetTag("YANQ_O2");
+            bi.Value = 5;
+            client["GroupData"].SetTagValue(bi);
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Groups>
   <Group Name="GroupTrigger">
-    <Block Name="milltm1" />
+    <Block Name="milltm1">
+      <Tag TagName="MILL_GLTri" OpcTagName="ns=2;s=test.设备 1.MILL_GLTri" />
+    </Block>
     <Block Name="milltm2" />
     <Block Name="milltm4" />
     <Block Name="uatrig">

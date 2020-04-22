@@ -60,6 +60,12 @@ namespace OpcClient
         /// <returns></returns>
         IEnumerable<Tag> GetTags(List<string> tagNames =null);
         /// <summary>
+        /// TAG取值
+        /// </summary>
+        /// <param name="tagName">Tag点名集合</param>
+        /// <returns></returns>
+        Tag GetTag(string tagName = null);
+        /// <summary>
         /// TAG点取值
         /// </summary>
         /// <param name="tagName">Tag点名</param>
@@ -82,6 +88,12 @@ namespace OpcClient
         /// <param name="tagName"></param>
         /// <returns></returns>
         List<Tag> GetTagHistory(string tagName);
+
+        /// <summary>
+        /// 根据tag名称更新OPC对应数据值
+        /// </summary>
+        /// <param name="bi">tag点</param>
+        void SetTagValue(Tag bi);
         /// <summary>
         /// 点新增后触发
         /// </summary>

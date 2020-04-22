@@ -80,7 +80,7 @@ namespace EasySocketService
             //Log4Ex.LogHelper.Debug("测试--更换后的dll");
         }
 
-        public ServiceForEasySocket(IOpcClient opcClient) : base(5000)
+        public ServiceForEasySocket(IOpcClient opcClient) : base(3600000)
         {
             this.opcClient = opcClient;
             EasyTcpClient.Instance.Extra.Tag.Set("opc", opcClient);
