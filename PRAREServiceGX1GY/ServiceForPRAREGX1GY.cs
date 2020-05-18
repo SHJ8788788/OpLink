@@ -102,7 +102,9 @@ namespace PRAREServiceGX1GY
                     // 根据流水号，查找流水号大于当前流水号的下一个计划号
                     var rollPlanNoGY = db.Queryable<L2_MILL_SCHEDU>().Where(p => p.CHARGE_SEQ> chargeSeqNow).OrderBy(p=>p.CHARGE_SEQ, SqlSugar.OrderByType.Asc).First();
                     LogHelper.Debug($"下一个轧制计划:{rollPlanNoGY.ROLL_PLAN_NO} ,流水号:{rollPlanNoGY.CHARGE_SEQ}");
-
+                    //查询对应的牌号
+                    string strSgSign = rollPlanNoGY.SG_SIGN;
+                    LogHelper.Debug($"牌号:{strSgSign}");
                     //根据计划号匹配对应的工艺参数
                     var planGY = db.Queryable<L2_MILL_SCHEDU_GY>().Where(p => p.ROLL_PLAN_NO == rollPlanNoGY.ROLL_PLAN_NO).First();
                     if (planGY == null)
@@ -162,8 +164,11 @@ namespace PRAREServiceGX1GY
 
                         string strFinal = strGdSpeed + strFanCur + strHoldNat;
                         LogHelper.Debug($"下发工艺参数:{strFinal}");
-                        WriteValue(strFinal);
-                    }
+                        //写入风冷参数
+                        WriteValue("MILL_GY",strFinal);
+                        //写入牌号
+                        WriteValue("SG_SIGN", strSgSign);
+                        }
                 }
                 }
             }
@@ -175,7 +180,7 @@ namespace PRAREServiceGX1GY
             return "";
         }
 
-        public void WriteValue(string value)
+        public void WriteValue(string tagName,string value)
         {
             byte[] bytTemp = new byte[2];
             bytTemp[0] = 254;
@@ -184,10 +189,8 @@ namespace PRAREServiceGX1GY
 
             byte[] finalValue = new byte[byteValue.Length + bytTemp.Length];
             bytTemp.CopyTo(finalValue, 0);
-            byteValue.CopyTo(finalValue, bytTemp.Length);             
-
-            //opc重新绑定
-            string tagName = "MILL_GY";  //将需要重载的点压入集合   
+            byteValue.CopyTo(finalValue, bytTemp.Length);  
+            
             //绑定完成后获取tag点
             string grouName = "GroupData";
             Tag bi = opcClient[grouName].GetTag(tagName);
